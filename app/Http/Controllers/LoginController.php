@@ -22,7 +22,7 @@ class LoginController extends Controller
         // 验证
         $this->validate(request(),[
             'email' => 'required|email',
-            'password' => 'required|min:5|max:10',
+            'password' => 'required|min:5|max:20',
             'is_remember' => 'integer'
         ]);
 

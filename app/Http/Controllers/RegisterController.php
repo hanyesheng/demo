@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\AdminUser;
 
 class RegisterController extends Controller
 {
@@ -18,18 +18,20 @@ class RegisterController extends Controller
     {
         // 验证
         $this->validate(request(), [
-            'name' => 'required|min:3|unique:users,name',
-            'email' => 'required|unique:users,email|email',
+            'username' => 'required|min:3|unique:admin_users,username',
+            'name' => 'required|min:3',
+            'email' => 'required|unique:admin_users,email|email',
             'password' => 'required|min:5|max:20|confirmed',
         ]);
 
 
         // 逻辑
+        $username = request('username');
         $name = request('name');
         $email = request('email');
         $password = bcrypt(request('password'));
 
-        $user = User::create(compact('name', 'email', 'password'));
+        $admin_users = AdminUser::create(compact('username','name', 'email', 'password'));
 
         // 渲染
         return redirect('/login');
