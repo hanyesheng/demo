@@ -15,6 +15,6 @@ class Comment extends Model
     // 评论所属用户
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\AdminUser');
     }
 }

@@ -49,7 +49,8 @@
         </div>
         @include('layout.error')
         <button class="btn btn-lg btn-primary btn-block" type="submit">登陆</button>
-        <a href="/register" class="btn btn-lg btn-primary btn-block" type="submit">去注册>></a>
+        <a href="/register" class="btn btn-lg btn-primary btn-block">去注册(づ｡◕ᴗᴗ◕｡)づ</a>
+        <a href="/" class="btn btn-lg btn-primary btn-block btn-link text-center">随便逛逛(￢_￢)</a>
     </form>
 
 </div> <!-- /container -->

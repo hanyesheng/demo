@@ -12,7 +12,7 @@
 */
 
 // 用户模块
-Route::get('/', '\App\Http\Controllers\LoginController@welcome');
+Route::get('/', '\App\Http\Controllers\PostController@index');
 // 注册页面
 Route::get('/register', '\App\Http\Controllers\RegisterController@index');
 // 注册行为
@@ -22,6 +22,8 @@ Route::get('/login', '\App\Http\Controllers\LoginController@index')->name("login
 // 登陆行为
 Route::post('/login', '\App\Http\Controllers\LoginController@login');
 
+// 文章列表页
+Route::get('/posts', '\App\Http\Controllers\PostController@index');
 
 Route::group(['middleware' => 'auth:web'], function(){
     // 登出行为
@@ -32,15 +34,12 @@ Route::group(['middleware' => 'auth:web'], function(){
     // 个人设置操作
     Route::post('/user/me/setting', '\App\Http\Controllers\UserController@settingStore');
 
-    // 文章列表页
-    Route::get('/posts', '\App\Http\Controllers\PostController@index');
     // 创建文章
     Route::get('/posts/create', '\App\Http\Controllers\PostController@create');
     Route::post('/posts', '\App\Http\Controllers\PostController@store');
     // 文章搜索页
     Route::get('/posts/search', '\App\Http\Controllers\PostController@search');
-    // 文章详情页
-    Route::get('/posts/{post}', '\App\Http\Controllers\PostController@show');
+
     // 编辑文章
     Route::get('/posts/{post}/edit', '\App\Http\Controllers\PostController@edit');
     Route::put('/posts/{post}', '\App\Http\Controllers\PostController@update');
@@ -69,6 +68,10 @@ Route::group(['middleware' => 'auth:web'], function(){
     // 通知
     Route::get('/notices', '\App\Http\Controllers\NoticeController@index');
 });
+
+// 文章详情页
+Route::get('/posts/{post}', '\App\Http\Controllers\PostController@show');
+
 
 // 管理后台
 Route::group(['prefix' => 'admin'], function(){

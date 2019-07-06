@@ -1,0 +1,29 @@
+a.dropdown-toggle img.img-rounded{
+    position: absolute;
+    top: 9px;
+    left: -20px;
+}
+.navbar-default{
+    background-color: rgb(255, 244, 205);
+}
+.navbar-default .navbar-nav>.active>a{
+    background-color: rgba(255, 218, 154, 0.64);
+}
+.top-logo{
+    float: left;
+    height: 40px;
+    padding-top: 10px;
+    width: 50px;
+    padding-right: 10px;
+}
+@media (max-width: 768px) {
+    .top-logo{
+        margin-left: 15px;
+    }
+    a.dropdown-toggle img.img-rounded {
+        display: none;
+    }
+    .navbar-brand{
+        float: left;
+    }
+}

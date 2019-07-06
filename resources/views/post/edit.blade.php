@@ -11,7 +11,10 @@
         </div>
         <div class="form-group">
             <label>内容</label>
-            <textarea id="content" name="content" class="form-control" style="height:400px;max-height:500px;"  placeholder="这里是内容">{{$post->content}}</textarea>
+            <div id="contentEditor">
+                <p>{!! $post->content !!}</p>
+            </div>
+            <textarea id="content" name="content" style="display: none" class="form-control"></textarea>
         </div>
         @include('layout.error')
         <button type="submit" class="btn btn-default">提交</button>
