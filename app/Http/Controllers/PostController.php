@@ -37,7 +37,7 @@ class PostController extends Controller
         // 验证
         $this->validate(request(),[
             'title' => 'required|string|max:100|min:5',
-            'content' => 'required|string|min:10',
+            'content' => 'required|string|min:0',
         ]);
 
         // 逻辑
@@ -87,10 +87,19 @@ class PostController extends Controller
     }
 
     // 上传图片
+
+    /**
+     * @param Request $request
+     * @return false|string
+     */
     public function imageUpload(Request $request)
     {
         $path = $request->file('wangEditorH5File')->storePublicly(md5(time()));
-        return asset('storage/'. $path);
+        $data = asset('storage/' . $path);
+        echo json_encode(array(
+            "error" => 0,
+            "data" => $data,
+        ));
     }
 
     // 提交评论

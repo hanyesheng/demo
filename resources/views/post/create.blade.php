@@ -10,7 +10,10 @@
         </div>
         <div class="form-group">
             <label>内容</label>
-            <textarea id="content"  style="height:400px;max-height:500px;" name="content" class="form-control" placeholder="这里是内容"></textarea>
+            <div id="contentEditor">
+                <p>输入文章内容</p>
+            </div>
+            <textarea id="content" name="content" style="display: none" class="form-control"></textarea>
         </div>
         @include('layout.error')
         <button type="submit" class="btn btn-default">提交</button>

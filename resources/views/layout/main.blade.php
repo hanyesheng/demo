@@ -10,8 +10,8 @@
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>laravel for blog</title>
-
+    <title>摩西摩西~(￣▽￣)／ もしもし</title>
+    <link rel="icon" type="image/png" href="/logo.png" sizes="32x32">
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
@@ -42,7 +42,7 @@
         @yield("content")
 
         @include("layout.sidebar")
-    </div>    </div><!-- /.row -->
+    </div>
 </div><!-- /.container -->
 
 @include("layout.footer")

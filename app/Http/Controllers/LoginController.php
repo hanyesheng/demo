@@ -27,14 +27,14 @@ class LoginController extends Controller
         ]);
 
         // 逻辑
-        $user = request(['email', 'password']);
+        $user = request(['email','password']);
         $is_remember = boolval(request('is_remember'));
         if (\Auth::attempt($user, $is_remember)) {
             return redirect('/posts');
         }
 
         // 渲染
-        return \Redirect::back()->withErrors("邮箱密码不匹配");
+        return \Redirect::back()->withInput()->withErrors("邮箱密码不匹配");
     }
 
     // 登出行为

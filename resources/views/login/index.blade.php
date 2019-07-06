@@ -37,10 +37,10 @@
     <form class="form-signin" method="POST" action="/login">
         {{csrf_field()}}
         <h2 class="form-signin-heading">请登录</h2>
-        <label for="inputEmail" class="sr-only">邮箱</label>
-        <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <label for="email" class="sr-only">邮箱</label>
+        <input type="email" name="email" id="email" class="form-control" placeholder="注册邮箱" required autofocus>
         <label for="inputPassword" class="sr-only">密码</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="密码" required>
         <div class="checkbox">
             <label>
                 <input type="checkbox" value="1" name="is_remember"> 记住我
