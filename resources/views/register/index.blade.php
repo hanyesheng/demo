@@ -9,9 +9,8 @@
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
 
-    <title>注册</title>
+    <title>注册:摩西摩西~(￣▽￣)／ もしもし</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -22,7 +21,7 @@
     <!-- Custom styles for this template -->
     <link href="http://v3.bootcss.com/examples/signin/signin.css" rel="stylesheet">
 
-
+    <link rel="icon" type="image/png" href="/logo.png" sizes="32x32">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -33,10 +32,11 @@
 <body>
 
 <div class="container">
-
     <form class="form-signin" method="POST" action="/register">
+        <div class="col-md-6 col-md-offset-3" style="padding-bottom: 15px;">
+            <img src="/logo_big.png" alt="..." class="img-responsive">
+        </div>
         {{ csrf_field() }}
-        <h2 class="form-signin-heading">请注册</h2>
         <label for="username" class="sr-only">登录名</label>
         <input type="text" name="username" id="username" class="form-control" placeholder="登录名" required autofocus>
         <label for="name" class="sr-only">昵称</label>

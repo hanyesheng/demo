@@ -9,10 +9,9 @@
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
 
-    <title>登陆</title>
-
+    <title>登陆:摩西摩西~(￣▽￣)／ もしもし</title>
+    <link rel="icon" type="image/png" href="/logo.png" sizes="32x32">
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
@@ -36,7 +35,9 @@
 
     <form class="form-signin" method="POST" action="/login">
         {{csrf_field()}}
-        <h2 class="form-signin-heading">请登录</h2>
+        <div class="col-md-6 col-md-offset-3" style="padding-bottom: 15px;">
+            <img src="/logo_big.png" alt="..." class="img-responsive">
+        </div>
         <label for="email" class="sr-only">邮箱</label>
         <input type="email" name="email" id="email" class="form-control" placeholder="注册邮箱" required autofocus>
         <label for="inputPassword" class="sr-only">密码</label>
