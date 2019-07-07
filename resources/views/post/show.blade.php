@@ -16,7 +16,7 @@
             @endcan
         </div>
 
-        <p class="blog-post-meta">{{$post->created_at->toFormattedDateString()}} by <a href="/user/{{$post->user->id}}">{{$post->user->name}}</a></p>
+        <p class="blog-post-meta">{{$post->created_at->diffForHumans()}} by <a href="/user/{{$post->user->id}}">{{$post->user->name}}</a></p>
 
         <p>{!! $post->content !!}</p>
         <div>
