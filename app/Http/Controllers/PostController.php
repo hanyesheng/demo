@@ -147,7 +147,7 @@ class PostController extends Controller
         ]);
         // 逻辑
         $query = request('query');
-        $posts = \App\Post::search($query)->paginate(2);
+        $posts = \App\Post::search($query)->paginate(10);
 
         // 渲染
         return view("post/search", compact('posts', 'query'));

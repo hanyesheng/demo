@@ -11,7 +11,7 @@ use Laravel\Scout\Searchable;
 
 class Post extends Model
 {
-
+    use Searchable;
 //    protected $table = "...";(按照规则自动对应posts  否则手动对应)
     // 定义索引里面的type
     public function searchableAs()
