@@ -15,8 +15,17 @@
                         <p class="blog-post-meta">赞 {{$post->zans_count}}  | 评论 {{$post->comments_count}}</p>
                     </div>
                     <div class="media-right">
-                        <button type="button" class="close" aria-label="Close"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
-                        <button type="button" class="close" aria-label="Close"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
+                        <table width="100%" cellpadding="0" cellspacing="0">
+                            <tr><td>
+                                    <button type="button" class="post-control" aria-label="Close"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
+                            </td></tr>
+                            <tr><td align="center">
+                                    <button type="button" class="post-control" ria-label="Close"><span class="zans_count" aria-hidden="true">{{$post->zans_count}}</span></button>
+                            </td></tr>
+                            <tr><td>
+                                    <button type="button" class="post-control" aria-label="Close"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
+                            </td></tr>
+                        </table>
                     </div>
                 </div>
             </div>
