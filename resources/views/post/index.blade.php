@@ -17,13 +17,13 @@
                     <div class="media-right">
                         <table width="100%" cellpadding="0" cellspacing="0">
                             <tr><td>
-                                    <button type="button" class="post-control" aria-label="Close"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
+                                    <button type="button" class="post-control" ><span class="glyphicon glyphicon-chevron-up"></span></button>
                             </td></tr>
                             <tr><td align="center">
-                                    <button type="button" class="post-control" ria-label="Close"><span class="zans_count" aria-hidden="true">{{$post->zans_count}}</span></button>
+                                    <span class="zans_count">{{$post->zans_count}}</span>
                             </td></tr>
                             <tr><td>
-                                    <button type="button" class="post-control" aria-label="Close"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
+                                    <button type="button" class="post-control" ><span class="glyphicon glyphicon-chevron-down"></span></button>
                             </td></tr>
                         </table>
                     </div>
