@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Comment;
 use App\Post;
 use App\Zan;
+use App\PostTopic;
+use App\Topic;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -12,10 +14,11 @@ class PostController extends Controller
     // 列表
     public function index()
     {
-        $posts = Post::inRandomOrder()->withCount(['comments', 'zans'])->paginate(6);
+        $posts = Post::inRandomOrder()->withCount(['comments', 'zans','topics','reposts'])->paginate(6);
 
         $posts->load('user');
-        return view("post/index", compact('posts'));
+
+        return view("post/index", compact('posts' ));
     }
 
     // 详情页面
@@ -32,24 +35,93 @@ class PostController extends Controller
     }
 
     // 创建逻辑
-    public function store()
+    public function store(Request $request)
     {
         // 验证
         $this->validate(request(),[
-            'title' => 'required|string|max:100|min:5',
-            'content' => 'required|string|min:0',
+            'title' => 'required|string|max:100|min:0',
         ]);
-
         // 逻辑
-        $user_id = \Auth::id();
-        $params = array_merge(request(['title', 'content']), compact('user_id'));
+        $user = \Auth::user();
+        $post = new Post;
+        if ($request->file('avatar')) {
+            $path = $request->file('avatar')->storePublicly($user->id);
+            $post->avatar = "/storage/" . $path;
+        }
+        $post->title = request('title');
+        $post->user_id = $user->id;
+        $post->assumed_name = $user->assumed_name;
+        $post->save();
+//        对新建的推送写入原始postid(id)
+        $newpost = Post::where('id', $post->id)->first();
+        $newpost->original_post_id = $newpost->id;
+        $newpost->save();
 
-        $post = Post::create($params);
+        if(request('topic_name')){
+            if (Topic::where('name', request('topic_name'))->count() > 0) {
+                $topic = Topic::where('name', request('topic_name'))->first();
+                $posttopic = new PostTopic;
+                $posttopic->post_id = $post->id;
+                $posttopic->topic_id = $topic->id;
+                $posttopic->save();
+            }else{
+            $topic = new Topic;
+            $topic->name = request('topic_name');
+            $topic->save();
+            $posttopic = new PostTopic;
+            $posttopic->post_id = $post->id;
+            $posttopic->topic_id = $topic->id;
+            $posttopic->save();
+            }
+        }
 
         // 渲染
-        return redirect("/posts");
+        return redirect("/posts/$post->id");
     }
+    // 转发逻辑
+    public function repost(Request $request)
+    {
+        // 验证
+        $this->validate(request(),[
+            'title' => 'required|string|max:100|min:0',
+            'forward_post_id' => 'required',
+            'original_post_id' => 'required',
+        ]);
+        // 逻辑
+        $user = \Auth::user();
+        $post = new Post;
+        if ($request->file('avatar')) {
+            $path = $request->file('avatar')->storePublicly($user->id);
+            $post->avatar = "/storage/" . $path;
+        }
+        $post->title = request('title');
+        $post->user_id = $user->id;
+        $post->assumed_name = $user->assumed_name;
+        $post->forward_post_id = request('forward_post_id');
+        $post->original_post_id = request('original_post_id');
+        $post->save();
 
+        if(request('topic_name')){
+            if (Topic::where('name', request('topic_name'))->count() > 0) {
+                $topic = Topic::where('name', request('topic_name'))->first();
+                $posttopic = new PostTopic;
+                $posttopic->post_id = $post->id;
+                $posttopic->topic_id = $topic->id;
+                $posttopic->save();
+            }else{
+                $topic = new Topic;
+                $topic->name = request('topic_name');
+                $topic->save();
+                $posttopic = new PostTopic;
+                $posttopic->post_id = $post->id;
+                $posttopic->topic_id = $topic->id;
+                $posttopic->save();
+            }
+        }
+
+        // 渲染
+        return redirect("/posts/$post->id");
+    }
     // 编辑页面
     public function edit(Post $post)
     {

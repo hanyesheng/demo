@@ -52,12 +52,23 @@ class Post extends Model
         return $this->hasMany(\App\Zan::class);
     }
 
+//    文章所有转发
+    public function reposts()
+    {
+        return $this->hasMany(\App\Post::class,'forward_post_id','id');
+    }
+    //文章的所有话题
+    public function topics()
+    {
+        return $this->belongsToMany(\App\Topic::class, 'post_topics', 'post_id','topic_id');
+    }
+
+
     // 属于某个作者的文章
     public function scopeAuthorBy(Builder $query, $user_id)
     {
         return $query->where('user_id', $user_id);
     }
-
     public function postTopics()
     {
         return $this->hasMany(\App\PostTopic::class, 'post_id', 'id');

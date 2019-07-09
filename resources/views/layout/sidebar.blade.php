@@ -2,14 +2,15 @@
 
     <aside class="widget panel panel-default">
         <div class="panel-heading">
-            专题
+            话题
         </div>
 
         <ul class="category-root list-group">
             @foreach($topics as $topic)
             <li class="list-group-item">
-                <a href="/topic/{{$topic->id}}">{{$topic->name}}
+                <a href="/topic/{{$topic->id}}">#{{$topic->name}}#
                 </a>
+                <span class="badge">{{$topic->posts_count}}</span>
             </li>
             @endforeach
         </ul>

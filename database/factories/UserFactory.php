@@ -32,3 +32,9 @@ $factory->define(App\Post::class, function(Faker\Generator $faker){
         'content' => $faker->paragraph(10),
     ];
 });
+$factory->define(App\AssumedName::class, function(Faker\Generator $faker){
+    $faker = Faker\Factory::create('zh_CN');
+    return [
+        'name' => $faker->name,
+    ];
+});

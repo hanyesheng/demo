@@ -3,7 +3,20 @@ a.dropdown-toggle img.img-rounded{
     top: 9px;
     left: -20px;
 }
-
+.topic-font{
+    margin-left: 5px;
+    font-style:oblique;
+}
+.preview_img{
+    width: 100px;
+}
+.thumbnail{
+    margin-top: 10px;
+}
+.post-img{
+    margin-top: 5px;
+    max-height: 100px;
+}
 .navbar-default{
     background-color: rgb(255, 244, 205);
 }
@@ -13,14 +26,16 @@ a.dropdown-toggle img.img-rounded{
 .panel-body .glyphicon{
     font-size: 16px;
 }
-
-.panel-footer .user-avatar{
+.row .blog-post-meta{
+    margin: 0;
+}
+.panel-heading .user-avatar{
     border-radius: 50%;
     height: 25px;
     width: 25px;
     margin-right: 5px;
 }
-.panel-footer small{
+.panel-heading small{
     padding-left: 10px;
 }
 .media-right .post-control{

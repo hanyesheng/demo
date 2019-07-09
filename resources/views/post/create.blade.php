@@ -2,18 +2,25 @@
 
 @section("content")
 <div class="col-sm-8 blog-main">
-    <form action="/posts" method="POST">
+    <form action="/posts" method="POST" enctype="multipart/form-data">
         {{csrf_field()}}
         <div class="form-group">
-            <label>标题</label>
-            <input name="title" type="text" class="form-control" placeholder="这里是标题">
+            <textarea id="title" name="title" class="form-control"></textarea>
         </div>
         <div class="form-group">
-            <label>内容</label>
-            <div id="contentEditor">
-                <p>输入文章内容</p>
+            <label class="col-sm-2 control-label">话题</label>
+            <div class="col-sm-10 input-group">
+                <span class="input-group-addon">#</span>
+                <input type="text" class="form-control" name="topic_name" >
+                <span class="input-group-addon">#</span>
             </div>
-            <textarea id="content" name="content" style="display: none" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">添加图片</label>
+            <div class="col-sm-10">
+                <input class="file-loading preview_input" type="file"  style="width:72px" name="avatar">
+                <img  class="preview_img" src="" alt="" class="img-rounded" style="border-radius:500px;">
+            </div>
         </div>
         @include('layout.error')
         <button type="submit" class="btn btn-default">提交</button>

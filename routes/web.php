@@ -34,8 +34,12 @@ Route::group(['middleware' => 'auth:web'], function(){
     // 个人设置操作
     Route::post('/user/me/setting', '\App\Http\Controllers\UserController@settingStore');
 
+    Route::post('/user/me/createAssumedName', '\App\Http\Controllers\UserController@createAssumedName');
+
     // 创建文章
     Route::get('/posts/create', '\App\Http\Controllers\PostController@create');
+    // 转发文章
+    Route::post('/repost', '\App\Http\Controllers\PostController@repost');
     Route::post('/posts', '\App\Http\Controllers\PostController@store');
     // 文章搜索页
     Route::get('/posts/search', '\App\Http\Controllers\PostController@search');

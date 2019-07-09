@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Console;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -27,6 +27,12 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        $schedule->call(function()
+        {
+            //TODO ...
+            $bool=DB::table("admin_users")->update(['dice_id'=>2]);
+            echo $bool;
+        })->everyMinute();
     }
 
     /**

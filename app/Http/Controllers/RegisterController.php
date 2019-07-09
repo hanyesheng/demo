@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\AdminUser;
+use App\AssumedName;
 
 class RegisterController extends Controller
 {
@@ -18,7 +19,7 @@ class RegisterController extends Controller
     {
         // 验证
         $this->validate(request(), [
-            'username' => 'required|min:3|unique:admin_users,username',
+            'username' => '',
             'name' => 'required|min:3',
             'email' => 'required|unique:admin_users,email|email',
             'password' => 'required|min:5|max:20|confirmed',
@@ -26,12 +27,17 @@ class RegisterController extends Controller
 
 
         // 逻辑
-        $username = request('username');
+        $names = AssumedName::inRandomOrder()->first();
+//        逻辑
+        $ssumedname = $names->name;
+        $assumed_name = $ssumedname;
+        $dice_id = 2;
+        $username = request('email');
         $name = request('name');
         $email = request('email');
         $password = bcrypt(request('password'));
 
-        $admin_users = AdminUser::create(compact('username','name', 'email', 'password'));
+        $admin_users = AdminUser::create(compact('username','name', 'email', 'password','assumed_name','dice_id'));
 
         // 渲染
         return redirect('/login');

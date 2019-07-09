@@ -37,8 +37,7 @@
             <img src="/logo_big.png" alt="..." class="img-responsive">
         </div>
         {{ csrf_field() }}
-        <label for="username" class="sr-only">登录名</label>
-        <input type="text" name="username" id="username" class="form-control" placeholder="登录名" required autofocus>
+        <input type="hidden" name="username" id="username" value="NULL" class="form-control" required autofocus>
         <label for="name" class="sr-only">昵称</label>
         <input type="text" name="name" id="name" class="form-control" placeholder="名字" required autofocus>
         <label for="inputEmail" class="sr-only">邮箱</label>

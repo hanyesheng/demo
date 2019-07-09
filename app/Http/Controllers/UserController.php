@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\AdminUser;
 use App\Post;
-
+use App\AssumedName;
 class UserController extends Controller
 {
     // 个人设置页面
@@ -41,6 +41,23 @@ class UserController extends Controller
         $user->save();
 
         // 渲染
+        return back();
+    }
+
+    public function createAssumedName()
+    {
+        $names = AssumedName::inRandomOrder()->first();
+//        验证
+        $this->validate(request(), [
+            'dice_id' => 'required|min:1',
+        ]);
+//        逻辑
+        $ssumedname = $names->name;
+        $user = \Auth::user();
+        $user->assumed_name = $ssumedname;
+        $user->dice_id = request('dice_id') - 1;
+        $user->save();
+//        渲染
         return back();
     }
 

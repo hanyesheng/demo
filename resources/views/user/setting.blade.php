@@ -2,6 +2,22 @@
 
 @section("content")
 <div class="col-sm-8 blog-main">
+    <form class="form-horizontal" action="/user/me/createAssumedName" method="POST" enctype="multipart/form-data">
+        {{csrf_field()}}
+        <div class="form-group">
+            <label class="col-sm-2 control-label">花名</label>
+            <div class="col-sm-10">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="assumed_name" disabled value="{{$user->assumed_name}}">
+                    <span class="input-group-addon">剩余机会：{{$user->dice_id}}</span>
+                    <input type="hidden" class="form-control" name="dice_id" value="{{$user->dice_id}}">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default" @if ($user->dice_id == 0) disabled="disabled" @endif type="button"><span class="glyphicon glyphicon-repeat"></span></button>
+                    </span>
+                </div><!-- /input-group -->
+            </div>
+        </div>
+    </form>
     <form class="form-horizontal" action="/user/me/setting" method="POST" enctype="multipart/form-data">
         {{csrf_field()}}
         <div class="form-group">
@@ -21,7 +37,6 @@
         <button type="submit" class="btn btn-default">修改</button>
     </form>
     <br>
-
 </div>
 
 @endsection

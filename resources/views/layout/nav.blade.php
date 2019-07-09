@@ -16,7 +16,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/posts">首页</a></li>
-                <li><a href="/posts/create">写文章</a></li>
+                <li><a href="/posts/create">发博</a></li>
                 <li><a href="/notices">通知</a></li>
             </ul>
             <form action="/posts/search" class="navbar-form navbar-left">
@@ -38,10 +38,10 @@
                 </li>
             @else
                 <li>
-                    <a href="/notices">登陆</a>
+                    <a href="/login">登陆</a>
                 </li>
                 <li>
-                    <a href="/login">注册</a>
+                    <a href="/register">注册</a>
                 </li>
             @endif
             </ul>
