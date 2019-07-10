@@ -8,14 +8,6 @@
             <textarea id="title" name="title" class="form-control"></textarea>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label">话题</label>
-            <div class="col-sm-10 input-group">
-                <span class="input-group-addon">#</span>
-                <input type="text" class="form-control" name="topic_name" >
-                <span class="input-group-addon">#</span>
-            </div>
-        </div>
-        <div class="form-group">
             <label class="col-sm-2 control-label">添加图片</label>
             <div class="col-sm-10">
                 <input class="file-loading preview_input" type="file"  style="width:72px" name="avatar">

@@ -56,22 +56,55 @@ class PostController extends Controller
         $newpost = Post::where('id', $post->id)->first();
         $newpost->original_post_id = $newpost->id;
         $newpost->save();
-
-        if(request('topic_name')){
-            if (Topic::where('name', request('topic_name'))->count() > 0) {
-                $topic = Topic::where('name', request('topic_name'))->first();
-                $posttopic = new PostTopic;
-                $posttopic->post_id = $post->id;
-                $posttopic->topic_id = $topic->id;
-                $posttopic->save();
-            }else{
-            $topic = new Topic;
-            $topic->name = request('topic_name');
-            $topic->save();
-            $posttopic = new PostTopic;
-            $posttopic->post_id = $post->id;
-            $posttopic->topic_id = $topic->id;
-            $posttopic->save();
+//        将内容按照#截取
+        $topics = explode('#', request('title'));
+        $topicslength=count($topics);
+//        遍历截取的数组
+        if($topicslength%2==0){
+            for($x=0;$x<$topicslength;$x++) {
+//            删除偶数项组成新数组
+                if($x%2==0||$x==$topicslength-1){
+                    unset($topics[$x]);
+                }else{
+                    if (Topic::where('name', $topics[$x])->count() > 0) {
+                        $topic = Topic::where('name', $topics[$x])->first();
+                        $posttopic = new PostTopic;
+                        $posttopic->post_id = $post->id;
+                        $posttopic->topic_id = $topic->id;
+                        $posttopic->save();
+                    }else{
+                        $topic = new Topic;
+                        $topic->name = $topics[$x];
+                        $topic->save();
+                        $posttopic = new PostTopic;
+                        $posttopic->post_id = $post->id;
+                        $posttopic->topic_id = $topic->id;
+                        $posttopic->save();
+                    }
+                }
+            }
+        }else{
+            for($x=0;$x<$topicslength;$x++) {
+//            删除偶数项组成新数组
+                if($x%2==0){
+                    unset($topics[$x]);
+                }else{
+                    if (Topic::where('name', $topics[$x])->count() > 0) {
+                        $topic = Topic::where('name', $topics[$x])->first();
+                        $posttopic = new PostTopic;
+                        $posttopic->post_id = $post->id;
+                        $posttopic->topic_id = $topic->id;
+                        $posttopic->save();
+                    }else{
+                        $topic = new Topic;
+                        $topic->name = $topics[$x];
+                        $topic->save();
+                        $posttopic = new PostTopic;
+                        $posttopic->post_id = $post->id;
+                        $posttopic->topic_id = $topic->id;
+                        $posttopic->save();
+                    }
+                }
             }
         }
 
@@ -101,21 +134,55 @@ class PostController extends Controller
         $post->original_post_id = request('original_post_id');
         $post->save();
 
-        if(request('topic_name')){
-            if (Topic::where('name', request('topic_name'))->count() > 0) {
-                $topic = Topic::where('name', request('topic_name'))->first();
-                $posttopic = new PostTopic;
-                $posttopic->post_id = $post->id;
-                $posttopic->topic_id = $topic->id;
-                $posttopic->save();
-            }else{
-                $topic = new Topic;
-                $topic->name = request('topic_name');
-                $topic->save();
-                $posttopic = new PostTopic;
-                $posttopic->post_id = $post->id;
-                $posttopic->topic_id = $topic->id;
-                $posttopic->save();
+        //        将内容按照#截取
+        $topics = explode('#', request('title'));
+        $topicslength=count($topics);
+//        遍历截取的数组
+        if($topicslength%2==0){
+            for($x=0;$x<$topicslength;$x++) {
+//            删除偶数项组成新数组
+                if($x%2==0||$x==$topicslength-1){
+                    unset($topics[$x]);
+                }else{
+                    if (Topic::where('name', $topics[$x])->count() > 0) {
+                        $topic = Topic::where('name', $topics[$x])->first();
+                        $posttopic = new PostTopic;
+                        $posttopic->post_id = $post->id;
+                        $posttopic->topic_id = $topic->id;
+                        $posttopic->save();
+                    }else{
+                        $topic = new Topic;
+                        $topic->name = $topics[$x];
+                        $topic->save();
+                        $posttopic = new PostTopic;
+                        $posttopic->post_id = $post->id;
+                        $posttopic->topic_id = $topic->id;
+                        $posttopic->save();
+                    }
+                }
+            }
+        }else{
+            for($x=0;$x<$topicslength;$x++) {
+//            删除偶数项组成新数组
+                if($x%2==0){
+                    unset($topics[$x]);
+                }else{
+                    if (Topic::where('name', $topics[$x])->count() > 0) {
+                        $topic = Topic::where('name', $topics[$x])->first();
+                        $posttopic = new PostTopic;
+                        $posttopic->post_id = $post->id;
+                        $posttopic->topic_id = $topic->id;
+                        $posttopic->save();
+                    }else{
+                        $topic = new Topic;
+                        $topic->name = $topics[$x];
+                        $topic->save();
+                        $posttopic = new PostTopic;
+                        $posttopic->post_id = $post->id;
+                        $posttopic->topic_id = $topic->id;
+                        $posttopic->save();
+                    }
+                }
             }
         }
 

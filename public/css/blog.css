@@ -13,6 +13,45 @@ a.dropdown-toggle img.img-rounded{
 .thumbnail{
     margin-top: 10px;
 }
+.post-action a:focus, a:hover {
+    color: #23527c;
+    text-decoration: none;
+}
+.repost .input-group-addon:last-child{
+    border-bottom-right-radius: 0px;
+    border-bottom: 0;
+}
+.repost .form-control:first-child{
+    border-right: 0;
+    border-bottom-left-radius: 0px;
+}
+.repost .add-img{
+    border-left: 0;
+}
+.jumbotron-repost-input{
+    padding: 10px;
+    color: inherit;
+    background-color: #eee;
+    border--radius: 0px;
+    padding-bottom: 0;
+}
+.modal-body .jumbotron{
+    border: 1px solid #ccc;
+    border-top: 0;
+    margin-bottom: 10px;
+    padding: 0px;
+    padding-bottom: 10px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+.modal-body .jumbotron .row{
+    margin: 0;
+}
+.modal-body .jumbotron .preview_img{
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 .post-img{
     margin-top: 5px;
     max-height: 100px;

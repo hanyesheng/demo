@@ -24,7 +24,6 @@ Route::post('/login', '\App\Http\Controllers\LoginController@login');
 
 // 文章列表页
 Route::get('/posts', '\App\Http\Controllers\PostController@index');
-
 Route::group(['middleware' => 'auth:web'], function(){
     // 登出行为
     Route::get('/logout', '\App\Http\Controllers\LoginController@logout');

@@ -80,3 +80,7 @@ $(".like-button").click(function(event){
         })
     }
 });
+function Open_File()
+{
+    document.getElementById("btn_file").click();
+};
