@@ -267,14 +267,24 @@ class PostController extends Controller
         ];
 
         Zan::firstOrCreate($param);
-        return back();
+        $postzans = Post::withCount(['comments', 'zans','topics','reposts'])->find($post->id);
+        return [
+            'error' => 0,
+            'zans' => $postzans->zans_count,
+            'msg' => ''
+        ];
     }
 
     // 取消赞
     public function unzan(Post $post)
     {
         $post->zan(\Auth::id())->delete();
-        return back();
+        $postzans = Post::withCount(['comments', 'zans','topics','reposts'])->find($post->id);
+        return [
+            'error' => 0,
+            'zans' => $postzans->zans_count,
+            'msg' => ''
+        ];
     }
 
     // 搜索结果页

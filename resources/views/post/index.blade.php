@@ -42,9 +42,11 @@
                             <a type="button" data-toggle="modal" href="#" data-target="#comments_count_{{$post->id}}">
                                 💬 {{$post->comments_count}}
                             </a>|
-                            <a type="button" >
-                                👍🏼{{$post->zans_count}}
-                            </a>
+                            @if ($post->zan(\Auth::id())->exists())
+                                <a type="button" class="like-post-button" like-zans="{{$post->zans_count}}" like-value="1" like-post="{{$post->id}}" href="javascript:void(0);">👍🏼</a><a class="zans_count">{{$post->zans_count}}</a>
+                            @else
+                                <a type="button" class="like-post-button" like-zans="{{$post->zans_count}}" like-value="0" like-post="{{$post->id}}" href="javascript:void(0);">👍🏼</a><a class="zans_count">{{$post->zans_count}}</a>
+                            @endif
                         </p>
                     </div>
                 </div>

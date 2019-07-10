@@ -3,6 +3,9 @@ a.dropdown-toggle img.img-rounded{
     top: 9px;
     left: -20px;
 }
+a[like-value="0"]{
+    opacity: .4;
+}
 .topic-font{
     margin-left: 5px;
     font-style:oblique;
@@ -82,27 +85,7 @@ a.dropdown-toggle img.img-rounded{
 .panel-heading small{
     padding-left: 10px;
 }
-.media-right .post-control{
-    font-size: 21px;
-    font-weight: 700;
-    line-height: 0;
-    color: #000;
-    text-shadow: 0 1px 0 #fff;
-    filter: alpha(opacity=20);
-    opacity: .2;
-    -webkit-appearance: none;
-    padding: 0;
-    cursor: pointer;
-    background: 0 0;
-    border: 0;
 
-}
-.media-right .zans_count{
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 0;
-    color: #cdcdcd;
-}
 .top-logo{
     float: left;
     height: 40px;

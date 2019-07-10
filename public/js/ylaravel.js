@@ -80,3 +80,40 @@ $(".like-button").click(function(event){
         })
     }
 });
+// 点赞
+$(".like-post-button").click(function(event){
+    var target = $(event.target);
+    var current_like = target.attr('like-value');
+    var post_id = target.attr("like-post");
+    if (current_like == 1) {
+        // 取消赞
+        $.ajax({
+            url: "/posts/" + post_id + "/unzan",
+            method : 'POST',
+            dataType: "json",
+            success: function(data) {
+                if (data.error != 0) {
+                    alert(data.msg);
+                    return;
+                }
+                target.attr("like-value", 0);
+                target.next(".zans_count").text(data.zans);
+            }
+        })
+    } else {
+        //赞
+        $.ajax({
+            url: "/posts/" + post_id + "/zan",
+            method : 'POST',
+            dataType: "json",
+            success: function(data) {
+                if (data.error != 0) {
+                    alert(data.msg);
+                    return;
+                }
+                target.attr("like-value", 1);
+                target.next(".zans_count").text(data.zans)
+            }
+        })
+    }
+});
