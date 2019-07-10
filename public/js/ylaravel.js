@@ -89,7 +89,7 @@ $(".like-post-button").click(function(event){
         // 取消赞
         $.ajax({
             url: "/posts/" + post_id + "/unzan",
-            method : 'POST',
+            method : 'get',
             dataType: "json",
             success: function(data) {
                 if (data.error != 0) {
@@ -104,7 +104,7 @@ $(".like-post-button").click(function(event){
         //赞
         $.ajax({
             url: "/posts/" + post_id + "/zan",
-            method : 'POST',
+            method : 'get',
             dataType: "json",
             success: function(data) {
                 if (data.error != 0) {
