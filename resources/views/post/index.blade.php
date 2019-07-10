@@ -29,19 +29,6 @@
                             <div class="col-md-12"><img src="{{$post->avatar}}" alt="..." class="img-rounded post-img"></div>
                         @endif
                     </div>
-                    <div class="media-right">
-                        <table width="100%" cellpadding="0" cellspacing="0">
-                            <tr><td>
-                                    <button type="button" class="post-control" >👍🏼</button>
-                            </td></tr>
-                            <tr><td align="center">
-                                    <span class="zans_count">{{$post->zans_count}}</span>
-                            </td></tr>
-                            <tr><td>
-                                    <button type="button" class="post-control" >👎🏼</button>
-                            </td></tr>
-                        </table>
-                    </div>
                 </div>
             </div>
             <div class="panel-footer">
@@ -52,8 +39,11 @@
                                 💞 {{$post->reposts_count}}
                             </a>
                             |
-                            <a type="button" data-toggle="modal" data-target="#comments_count_{{$post->id}}">
+                            <a type="button" data-toggle="modal" href="#" data-target="#comments_count_{{$post->id}}">
                                 💬 {{$post->comments_count}}
+                            </a>|
+                            <a type="button" >
+                                👍🏼{{$post->zans_count}}
                             </a>
                         </p>
                     </div>
@@ -71,15 +61,15 @@
                                 <input class="file-loading preview_input" type="hidden" value="{{$post->original_post_id}}" style="width:72px" name="original_post_id">
                                 <div class="input-group repost">
                                     <input type="text" class="form-control" value="@foreach($post->topics as $topic)#{{$topic->name}}#@endforeach" name="title" placeholder="..." aria-describedby="basic-addon2">
-                                    <span class="input-group-addon add-img">
-                                        <a onclick="Open_File()" href="javascript:void(0);"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;<span class="glyphicon glyphicon-picture" aria-hidden="true"></span></a>
-                                    </span>
+
                                     <span class="input-group-addon" id="basic-addon2">转发@ {{$post->user->assumed_name}}</span>
                                 </div>
                                 <div class="jumbotron">
                                     <div class="row">
-                                        <input class="file-loading preview_input" id="btn_file" style="display:none" type="file"  style="width:72px" name="avatar">
-                                        <img  class="preview_img img-rounded" src="" alt="" class="img-rounded">
+                                        <div class="form-group add-img">
+                                            <input class="file-loading preview_input" id="exampleInputFile" type="file" name="avatar">
+                                            <img  class="preview_img img-rounded" src="" alt="" class="img-rounded">
+                                        </div>
                                         <div class="col-md-12">
                                             //:{{$post->title}}
                                             @foreach($post->topics as $topic)
@@ -103,7 +93,11 @@
         </div>
         <div class="modal fade" id="comments_count_{{$post->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
-                comments_count
+                <div class="modal-content">
+                    <div class="modal-body">
+                        comments_count
+                    </div>
+                </div>
             </div>
         </div>
         @endforeach

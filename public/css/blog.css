@@ -17,16 +17,21 @@ a.dropdown-toggle img.img-rounded{
     color: #23527c;
     text-decoration: none;
 }
+.jumbotron .add-img{
+    margin-bottom: 0;
+}
+.jumbotron .preview_input{
+    margin-left: 15px;
+    margin-top: 10px;
+}
 .repost .input-group-addon:last-child{
     border-bottom-right-radius: 0px;
     border-bottom: 0;
+    border-left: 0;
 }
 .repost .form-control:first-child{
     border-right: 0;
     border-bottom-left-radius: 0px;
-}
-.repost .add-img{
-    border-left: 0;
 }
 .jumbotron-repost-input{
     padding: 10px;
