@@ -35,17 +35,21 @@
                 <div class="row">
                     <div class="col-md-12">
                         <p class="blog-post-meta post-action">
-                            <a type="button" data-toggle="modal" href="#" data-target="#reposts_count_{{$post->id}}">
-                                💞 {{$post->reposts_count}}
-                            </a>
-                            |
-                            <a type="button" data-toggle="modal" href="#" data-target="#comments_count_{{$post->id}}">
-                                💬 {{$post->comments_count}}
-                            </a>|
-                            @if ($post->zan(\Auth::id())->exists())
-                                <a type="button" class="like-post-button" like-zans="{{$post->zans_count}}" like-value="1" like-post="{{$post->id}}" href="javascript:void(0);">👍🏼</a><a class="zans_count">{{$post->zans_count}}</a>
+                            @if (\Auth::check())
+                                <a type="button" data-toggle="modal" href="#" data-target="#reposts_count_{{$post->id}}">
+                                    💞 {{$post->reposts_count}}
+                                </a>
+                                |
+                                <a type="button" data-toggle="modal" href="#" data-target="#comments_count_{{$post->id}}">
+                                    💬 {{$post->comments_count}}
+                                </a>|
+                                @if ($post->zan(\Auth::id())->exists())
+                                    <a type="button" class="like-post-button" like-zans="{{$post->zans_count}}" like-value="1" like-post="{{$post->id}}" href="javascript:void(0);">👍🏼</a><a class="zans_count">{{$post->zans_count}}</a>
+                                @else
+                                    <a type="button" class="like-post-button" like-zans="{{$post->zans_count}}" like-value="0" like-post="{{$post->id}}" href="javascript:void(0);">👍🏼</a><a class="zans_count">{{$post->zans_count}}</a>
+                                @endif
                             @else
-                                <a type="button" class="like-post-button" like-zans="{{$post->zans_count}}" like-value="0" like-post="{{$post->id}}" href="javascript:void(0);">👍🏼</a><a class="zans_count">{{$post->zans_count}}</a>
+                                <a href="/login">登录后完成更多操作</a>
                             @endif
                         </p>
                     </div>

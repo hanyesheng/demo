@@ -2,6 +2,7 @@ a.dropdown-toggle img.img-rounded{
     position: absolute;
     top: 9px;
     left: -20px;
+    width: 30px;
 }
 a[like-value="0"]{
     opacity: .4;

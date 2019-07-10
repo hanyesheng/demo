@@ -37,8 +37,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="551">
-              <caret line="58" column="14" selection-start-line="58" selection-start-column="14" selection-end-line="58" selection-end-column="14" />
+            <state relative-caret-position="-323">
+              <caret line="58" column="84" selection-start-line="58" selection-start-column="84" selection-end-line="58" selection-end-column="84" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/layout/nav.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="598">
+              <caret line="40" column="35" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -55,40 +64,31 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/post/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="47" column="174" selection-start-line="47" selection-start-column="174" selection-end-line="47" selection-end-column="174" />
+            <state relative-caret-position="474">
+              <caret line="51" column="47" selection-start-line="51" selection-start-column="47" selection-end-line="51" selection-end-column="47" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/ylaravel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="91" column="25" selection-start-line="91" selection-start-column="25" selection-end-line="91" selection-end-column="25" />
+            <state relative-caret-position="275">
+              <caret line="81" column="3" selection-start-line="81" selection-start-column="3" selection-end-line="81" selection-end-column="3" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/storage/logs/laravel-2019-07-10.log">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PostController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4436">
-              <caret line="18378" column="4" selection-start-line="18378" selection-start-column="4" selection-end-line="18378" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="67" column="81" selection-start-line="67" selection-start-column="64" selection-end-line="67" selection-end-column="81" />
+            <state relative-caret-position="304">
+              <caret line="16" column="104" selection-start-line="16" selection-start-column="104" selection-end-line="16" selection-end-column="104" />
               <folding>
-                <element signature="e#40#68#0#PHP" expanded="true" />
+                <element signature="e#40#56#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -97,8 +97,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/css/blog.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+            <state relative-caret-position="76">
+              <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -175,11 +175,11 @@
         <option value="$PROJECT_DIR$/resources/views/post/create.blade.php" />
         <option value="$PROJECT_DIR$/public/css/emoji.css" />
         <option value="$PROJECT_DIR$/resources/views/layout/main.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/PostController.php" />
-        <option value="$PROJECT_DIR$/resources/views/post/index.blade.php" />
-        <option value="$PROJECT_DIR$/public/css/blog.css" />
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/public/js/ylaravel.js" />
+        <option value="$PROJECT_DIR$/public/css/blog.css" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/PostController.php" />
+        <option value="$PROJECT_DIR$/resources/views/post/index.blade.php" />
       </list>
     </option>
   </component>
@@ -284,7 +284,7 @@
       <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-12" />
     <option name="y" value="-12" />
     <option name="width" value="3266" />
@@ -320,6 +320,13 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Http" type="462c0819:PsiDirectoryNode" />
               <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="moshimoshi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="moshimoshi" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Middleware" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="moshimoshi" type="b2602c69:ProjectViewProjectNode" />
@@ -444,12 +451,12 @@
       <option name="presentableId" value="Default" />
       <updated>1562137406944</updated>
       <workItem from="1562137410273" duration="796000" />
-      <workItem from="1562138294208" duration="176903000" />
+      <workItem from="1562138294208" duration="177595000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="177699000" />
+    <option name="totallyTimeSpent" value="178391000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1633" height="1063" extended-state="6" />
@@ -702,13 +709,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layout/nav.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="33" column="51" lean-forward="true" selection-start-line="33" selection-start-column="51" selection-end-line="33" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/PostTopic.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
@@ -767,44 +767,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PostController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="773">
-          <caret line="284" column="31" selection-start-line="284" selection-start-column="31" selection-end-line="284" selection-end-column="31" />
-          <folding>
-            <element signature="e#40#56#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/storage/logs/laravel-2019-07-10.log">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-4436">
           <caret line="18378" column="4" selection-start-line="18378" selection-start-column="4" selection-end-line="18378" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="58" column="14" selection-start-line="58" selection-start-column="14" selection-end-line="58" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/post/create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="23" selection-start-column="23" selection-end-column="23" />
-          <folding>
-            <element signature="e#980#1008#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/blog.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -818,17 +784,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/post/index.blade.php">
+    <entry file="file://$PROJECT_DIR$/public/js/ylaravel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="47" column="174" selection-start-line="47" selection-start-column="174" selection-end-line="47" selection-end-column="174" />
+        <state relative-caret-position="275">
+          <caret line="81" column="3" selection-start-line="81" selection-start-column="3" selection-end-line="81" selection-end-column="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/ylaravel.js">
+    <entry file="file://$PROJECT_DIR$/public/css/blog.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="91" column="25" selection-start-line="91" selection-start-column="25" selection-end-line="91" selection-end-column="25" />
+        <state relative-caret-position="76">
+          <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PostController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" column="104" selection-start-line="16" selection-start-column="104" selection-end-line="16" selection-end-column="104" />
+          <folding>
+            <element signature="e#40#56#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-323">
+          <caret line="58" column="84" selection-start-line="58" selection-start-column="84" selection-end-line="58" selection-end-column="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layout/nav.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="598">
+          <caret line="40" column="35" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/post/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="23" selection-start-column="23" selection-end-column="23" />
+          <folding>
+            <element signature="e#980#1008#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/post/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="474">
+          <caret line="51" column="47" selection-start-line="51" selection-start-column="47" selection-end-line="51" selection-end-column="47" />
         </state>
       </provider>
     </entry>

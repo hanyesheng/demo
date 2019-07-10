@@ -14,7 +14,7 @@ class PostController extends Controller
     // 列表
     public function index()
     {
-        $posts = Post::inRandomOrder()->withCount(['comments', 'zans','topics','reposts'])->paginate(6);
+        $posts = Post::inRandomOrder()->withCount(['comments', 'zans','topics','reposts'])->paginate(2);
 
         $posts->load('user');
 
