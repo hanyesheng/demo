@@ -65,8 +65,6 @@ Route::group(['middleware' => 'auth:web'], function(){
 
     // 专题详情页
     Route::get('/topic/{topic}', '\App\Http\Controllers\TopicController@show');
-    // 投稿
-    Route::post('/topic/{topic}/submit', '\App\Http\Controllers\TopicController@submit');
 
     // 通知
     Route::get('/notices', '\App\Http\Controllers\NoticeController@index');

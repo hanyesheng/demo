@@ -1,5 +1,4 @@
 @extends("layout.main")
-
 @section("content")
 <div class="col-sm-8 blog-main">
     <div style="height: 20px;">
@@ -7,7 +6,6 @@
     <div>
         @foreach($posts as $post)
         <div class="panel panel-default">
-
             <div class="panel-heading">
                 @if ($post->user->avatar)
                     <img class="user-avatar" src="{{$post->user->avatar}}">
@@ -20,9 +18,9 @@
                 <div class="media">
                     <div class="media-body">
                         <div class="col-md-12">
-                            <div class="post-content">{{$post->title}}</div>
+                            <div class="post-content"><p class="lead">{{$post->title}}</p></div>
                             @foreach($post->topics as $topic)
-                                <a class="topic-font" href="/topic/{{$topic->name}}">#{{$topic->name}}#</a>
+                                <a class="topic-font" href="/topic/{{$topic->id}}">#{{$topic->name}}#</a>
                             @endforeach
                         </div>
                         @if($post->avatar)
@@ -57,37 +55,34 @@
                 </div>
             </div>
         </div>
+        {{--转发弹窗--}}
         <div class="modal fade" id="reposts_count_{{$post->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <form action="/repost" method="POST" enctype="multipart/form-data">
                     <div class="modal-content">
                         <div class="modal-body">
-                                {{csrf_field()}}
-                                <input class="file-loading preview_input" type="hidden" value="{{$post->id}}"  style="width:72px" name="forward_post_id">
-                                <input class="file-loading preview_input" type="hidden" value="{{$post->original_post_id}}" style="width:72px" name="original_post_id">
-                                <div class="input-group repost">
-                                    <input type="text" class="form-control" value="@foreach($post->topics as $topic)#{{$topic->name}}#@endforeach" name="title" placeholder="..." aria-describedby="basic-addon2">
-
-                                    <span class="input-group-addon" id="basic-addon2">转发@ {{$post->user->assumed_name}}</span>
-                                </div>
-                                <div class="jumbotron">
-                                    <div class="row">
-                                        <div class="form-group add-img">
-                                            <input class="file-loading preview_input" id="exampleInputFile" type="file" name="avatar">
-                                            <img  class="preview_img img-rounded" src="" alt="" class="img-rounded">
-                                        </div>
-                                        <div class="col-md-12">
-                                            //:{{$post->title}}
-                                            @foreach($post->topics as $topic)
-                                                <a class="topic-font" href="/topic/{{$topic->id}}">#{{$topic->name}}#</a>
-                                            @endforeach
-                                        </div>
-                                        @if($post->avatar)
-                                            <div class="col-md-12"><img src="{{$post->avatar}}" alt="..." class="img-rounded post-img"></div>
-                                        @endif
+                            {{csrf_field()}}
+                            <input class="file-loading preview_input" type="hidden" value="{{$post->id}}"  style="width:72px" name="forward_post_id">
+                            <input class="file-loading preview_input" type="hidden" value="{{$post->original_post_id}}" style="width:72px" name="original_post_id">
+                                <input type="text" class="form-control" value="" name="title" placeholder="" aria-describedby="basic-addon2">
+                            <div class="jumbotron">
+                                <div class="row">
+                                    <div class="form-group add-img">
+                                        <input class="file-loading preview_input" id="exampleInputFile" type="file" name="avatar">
+                                        <img  class="preview_img img-rounded" src="" alt="" class="img-rounded">
                                     </div>
+                                    <div class="col-md-12">
+                                        // <a href="/user/{{$post->user->id}}">{{$post->user->assumed_name}}</a> : {{$post->title}}
+                                        @foreach($post->topics as $topic)
+                                            <a class="topic-font" href="/topic/{{$topic->id}}">#{{$topic->name}}#</a>
+                                            <input type="hidden" class="form-control" value="{{$topic->name}}" name="topic_name">
+                                        @endforeach
+                                    </div>
+                                    @if($post->avatar)
+                                        <div class="col-md-12"><img src="{{$post->avatar}}" alt="..." class="img-rounded post-img"></div>
+                                    @endif
                                 </div>
-                                @include('layout.error')
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>

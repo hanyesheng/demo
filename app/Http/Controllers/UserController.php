@@ -69,7 +69,7 @@ class UserController extends Controller
 
         // 这个人的文章列表，取创建时间最新的前10条
         $posts = $user->posts()->orderBy('created_at', 'desc')->take(10)->get();
-        $countposts = Post::whereIn('id', $posts->pluck('id'))->withCount(['comments', 'zans'])->get();
+        $countposts = Post::whereIn('id', $posts->pluck('id'))->withCount(['comments', 'zans','reposts'])->get();
 
         // 这个人关注的用户，包含关注用户的 关注／粉丝／文章数
         $stars = $user->stars;

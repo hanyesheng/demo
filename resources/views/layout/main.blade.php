@@ -38,6 +38,8 @@
     </div>
 
     <div class="row">
+
+        @include('layout.error')
         @yield("content")
 
 

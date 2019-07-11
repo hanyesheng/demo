@@ -16,8 +16,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/posts">首页</a></li>
-                <li><a href="/posts/create">发博</a></li>
-                <li><a href="/notices">通知</a></li>
+                <li><a type="button" data-toggle="modal" href="#" data-target="#creat-post">发博</a></li>
             </ul>
             <ul class="nav navbar-nav">
                 <li class="dropdown">
@@ -39,6 +38,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="{{\Auth::user()->avatar}}" alt="" class="img-rounded" style="border-radius:500px; height: 30px">{{ \Auth::user()->name }}  <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="/user/{{\Auth::id()}}">我的主页</a></li>
+                        <li><a href="/notices">通知</a></li>
                         <li><a href="/user/me/setting">个人设置</a></li>
                         <li><a href="/logout">登出</a></li>
                     </ul>
@@ -55,3 +55,31 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+
+<div class="modal fade" id="creat-post" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <form action="/posts" method="POST" enctype="multipart/form-data">
+            {{csrf_field()}}
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <textarea id="title" name="title" class="form-control"></textarea>
+                        <div class="input-group">
+                            <span class="input-group-addon">#</span>
+                            <input type="text" class="form-control" name="topic_name">
+                            <span class="input-group-addon">#</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input class="file-loading preview_input" type="file"  style="width:72px" name="avatar">
+                        <img  class="preview_img" src="" alt="" style="border-radius:500px;">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="submit" class="btn btn-primary">提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
