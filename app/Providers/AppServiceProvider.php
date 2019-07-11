@@ -48,7 +48,7 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         \View::composer('layout.sidebar', function($view){
-            $topics = \App\Topic::withCount(['posts'])->get();
+            $topics = \App\Topic::withCount(['posts'])->orderBy('posts_count', 'desc')->get(10);
             $view->with('topics', $topics);
         });
 

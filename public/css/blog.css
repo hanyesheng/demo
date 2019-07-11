@@ -94,6 +94,37 @@ a[like-value="0"]{
     width: 50px;
     padding-right: 10px;
 }
+.top-topics>li{
+    border-top: 1px solid #ddd;
+}
+.top-topics>li:first-child{
+    border-top: 0;
+}
+.top-topics>li>a{
+    padding: 8px 15px;
+    color: #337ab7;
+}
+.top-topics>li>a> .text-danger{
+    font-size: 20px;
+    font-weight: 500;
+}
+.top-topics>li>a> .badge-info{
+    background-color: rgb(255, 176, 38);
+    border-radius: 50%;
+}
+.panel-body-action{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+.panel-body-hr{
+    padding: 0px;
+    margin: 0px;
+}
+.top-topics .badge{
+    float: right;
+}
 @media (max-width: 768px) {
     .top-logo{
         margin-left: 15px;

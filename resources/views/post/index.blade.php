@@ -20,9 +20,9 @@
                 <div class="media">
                     <div class="media-body">
                         <div class="col-md-12">
-                            {{$post->title}}
+                            <div class="post-content">{{$post->title}}</div>
                             @foreach($post->topics as $topic)
-                                <a class="topic-font" href="/topic/{{$topic->id}}">#{{$topic->name}}#</a>
+                                <a class="topic-font" href="/topic/{{$topic->name}}">#{{$topic->name}}#</a>
                             @endforeach
                         </div>
                         @if($post->avatar)
@@ -31,7 +31,8 @@
                     </div>
                 </div>
             </div>
-            <div class="panel-footer">
+            <hr class="panel-body-hr">
+            <div class="panel-body-action">
                 <div class="row">
                     <div class="col-md-12">
                         <p class="blog-post-meta post-action">
@@ -56,7 +57,6 @@
                 </div>
             </div>
         </div>
-
         <div class="modal fade" id="reposts_count_{{$post->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <form action="/repost" method="POST" enctype="multipart/form-data">
@@ -107,9 +107,7 @@
             </div>
         </div>
         @endforeach
-
         {{$posts->links()}}
-
     </div><!-- /.blog-main -->
 </div>
 @endsection

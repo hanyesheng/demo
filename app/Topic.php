@@ -4,7 +4,10 @@ namespace App;
 
 class Topic extends Model
 {
-
+    public function getRouteKeyName()
+    {
+        return 'name';
+    }
     // 属于这个专题的所有文章
     public function posts()
     {

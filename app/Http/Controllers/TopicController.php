@@ -7,6 +7,7 @@ use App\Topic;
 
 class TopicController extends Controller
 {
+
     // 专题详情页
     public function show(Topic $topic)
     {

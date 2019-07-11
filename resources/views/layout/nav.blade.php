@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
             </button>
             <img src="/logo_big.png" class="top-logo">
-            <a class="navbar-brand" href="#">MoshiMoshi</a>
+            <a class="navbar-brand" href="/">MoshiMoshi</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -18,6 +18,14 @@
                 <li class="active"><a href="/posts">首页</a></li>
                 <li><a href="/posts/create">发博</a></li>
                 <li><a href="/notices">通知</a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">热门话题 <span class="caret"></span></a>
+                    <ul class="dropdown-menu top-topics">
+                        @include("layout.sidebar")
+                    </ul>
+                </li>
             </ul>
             <form action="/posts/search" class="navbar-form navbar-left">
                 <div class="form-group">
@@ -28,7 +36,6 @@
             <ul class="nav navbar-nav navbar-right">
             @if (\Auth::check())
                 <li class="dropdown">
-
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="{{\Auth::user()->avatar}}" alt="" class="img-rounded" style="border-radius:500px; height: 30px">{{ \Auth::user()->name }}  <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="/user/{{\Auth::id()}}">我的主页</a></li>
