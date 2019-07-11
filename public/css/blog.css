@@ -125,6 +125,9 @@ a[like-value="0"]{
 .top-topics .badge{
     float: right;
 }
+.top-topics{
+    min-width: 300px;
+}
 @media (max-width: 768px) {
     .top-logo{
         margin-left: 15px;
