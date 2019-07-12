@@ -10,6 +10,7 @@ a[like-value="0"]{
 .topic-font{
     margin-left: 5px;
     font-style:oblique;
+    float: right;
 }
 .preview_img{
     width: 100px;
@@ -118,15 +119,22 @@ a[like-value="0"]{
     padding-bottom: 10px;
     padding-top: 10px;
 }
-.panel-body-hr{
+.panel-body-hr-bottom{
     padding: 0px;
     margin: 0px;
+}
+.panel-body-hr{
+    padding: 0px;
+    margin: 0px 20px;
 }
 .top-topics .badge{
     float: right;
 }
 .top-topics{
     min-width: 300px;
+}
+.lead{
+    margin-bottom: 0px;
 }
 @media (max-width: 768px) {
     .top-logo{

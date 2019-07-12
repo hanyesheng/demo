@@ -52,7 +52,7 @@ class Post extends Model
         return $this->hasMany(\App\Zan::class);
     }
 
-//    文章所有转发
+//    文章所有转发（转发此post的数量）
     public function reposts()
     {
         return $this->hasMany(\App\Post::class,'forward_post_id','id');
@@ -62,6 +62,11 @@ class Post extends Model
     {
         return $this->belongsToMany(\App\Topic::class, 'post_topics', 'post_id','topic_id');
     }
+    public function lastposts()
+    {
+        return $this->hasMany(\App\Post::class, 'id','forward_post_id');
+    }
+
 
 
     // 属于某个作者的文章

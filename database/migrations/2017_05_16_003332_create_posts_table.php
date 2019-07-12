@@ -21,6 +21,8 @@ class CreatePostsTable extends Migration
             $table->integer('original_post_id')->default(0);
             $table->string('assumed_name')->nullable();
             $table->integer('user_id')->default(0);
+            $table->string('level_id')->nullable();
+            $table->string('vote_id')->nullable();
             $table->string('avatar')->nullable();
             $table->timestamps();
         });

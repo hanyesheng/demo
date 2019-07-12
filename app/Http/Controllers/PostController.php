@@ -17,8 +17,7 @@ class PostController extends Controller
         $posts = Post::withCount(['comments', 'zans','reposts'])->orderBy('created_at', 'desc')->orderBy('zans_count', 'desc')->paginate(2);
 
         $posts->load('user');
-
-        return view("post/index", compact('posts' ));
+        return view("post/index", compact('posts'));
     }
 
     // 详情页面
@@ -51,6 +50,7 @@ class PostController extends Controller
         $post->title = request('title');
         $post->user_id = $user->id;
         $post->assumed_name = $user->assumed_name;
+        $post->level_id = 1;
         $post->save();
 //        对新建的推送写入原始postid(id)
         $newpost = Post::where('id', $post->id)->first();
@@ -86,6 +86,7 @@ class PostController extends Controller
             'title' => 'required|string|max:100|min:0',
             'forward_post_id' => 'required',
             'original_post_id' => 'required',
+            'level_id' => 'required',
         ]);
         // 逻辑
         $user = \Auth::user();
@@ -98,6 +99,7 @@ class PostController extends Controller
         $post->user_id = $user->id;
         $post->assumed_name = $user->assumed_name;
         $post->forward_post_id = request('forward_post_id');
+        $post->level_id = request('level_id') + 1;
         $post->original_post_id = request('original_post_id');
         $post->save();
 
