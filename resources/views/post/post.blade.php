@@ -11,7 +11,7 @@
         <div class="media">
             <div class="media-body">
                 <div class="col-md-12">
-                    <div class="post-content"><p class="lead">{{$post->id}}.{{$post->title}}</p></div>
+                    <div class="post-content"><p class="lead">{{$post->level_id}}.{{$post->title}}</p></div>
                 </div>
                 @if($post->avatar)
                     <div class="col-md-12"><img src="{{$post->avatar}}" alt="..." class="img-rounded post-img"></div>
