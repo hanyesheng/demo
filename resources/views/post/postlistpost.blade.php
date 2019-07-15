@@ -1,18 +1,15 @@
 <div class="media">
     <div class="media-body">
     {{$post->level_id}}.
-    <a href="/user/{{$post->user->id}}">{{$post->user->assumed_name}} </a><small class="text-muted">{{$post->created_at->diffForHumans()}} </small>:
-    {{$post->title}}
+    <a href="/user/{{$post->user->id}}">{{$post->user->assumed_name}} </a><small class="text-muted">{{$post->created_at->diffForHumans()}} / {{$post->reposts_count}}转发</small>
+        <br>
+    <a type="button" class="post-title" data-toggle="modal" href="#" data-target="#reposts_count_{{$post->id}}">&nbsp;&nbsp;&nbsp;&nbsp;{{$post->title}}</a>
     @if($post->avatar)<a href="{{$post->avatar}}" >查看图片</a>@endif
     </div>
     <div class="media-left">
         <p class="blog-post-meta post-action">
             <small class="text-muted">
             @if (\Auth::check())
-                <a type="button" data-toggle="modal" href="#" data-target="#reposts_count_{{$post->id}}">
-                    <span class="glyphicon glyphicon-share" aria-hidden="true">{{$post->reposts_count}}</span>
-                </a>
-                |
                 @if ($post->zan(\Auth::id())->exists())
                     <a type="button" class="like-post-button" like-zans="{{$post->zans_count}}" like-value="1" like-post="{{$post->id}}" href="javascript:void(0);">👍🏼</a>
                     <a class="zans_count">{{$post->zans_count}}</a>

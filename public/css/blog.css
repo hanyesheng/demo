@@ -99,6 +99,14 @@ a[like-value="1"]{
     margin: 0;
     white-space: nowrap;
 }
+.post-title{
+    color: #333;
+    text-decoration: none;
+}
+a.post-title:focus, a.post-title:hover{
+    color: #333;
+    text-decoration: none;
+}
 .topic-left{
     display: inline;
     vertical-align: middle;
