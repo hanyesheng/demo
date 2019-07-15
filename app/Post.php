@@ -64,7 +64,7 @@ class Post extends Model
     }
     public function lastposts()
     {
-        return $this->hasMany(\App\Post::class, 'id','forward_post_id');
+        return $this->hasMany(\App\Post::class, 'id','forward_post_id')->withCount(['comments', 'zans','reposts']);
     }
 
 

@@ -1,4 +1,3 @@
 @foreach($post->lastposts as $post)
-
-@include('post.postlistpost')
+    @include('post.postlistpost')
 @endforeach
