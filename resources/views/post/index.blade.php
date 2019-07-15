@@ -2,6 +2,7 @@
 @section("content")
 
 <div class="col-sm-8 blog-main">
+    @if (\Auth::check())
     <div style="display: flex;overflow-x: scroll;margin-bottom: 20px">
         @foreach($sutopics as $topic)
             <div class="pull-left" style="margin-right: 10px;">
@@ -23,6 +24,7 @@
                 </div>
             </div>
     </div>
+    @endif
     @foreach($posts as $post)
         @include('post.post')
     @endforeach

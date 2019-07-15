@@ -17,10 +17,14 @@ class PostController extends Controller
     {
         $posts = Post::withCount(['comments', 'zans','reposts'])->orderBy('created_at', 'desc')->orderBy('zans_count', 'desc')->paginate(2);
         $posts->load('user');
-        $user = AdminUser::find(\Auth::id());
-        $topics = $user->mytopics();
-        $sutopics = Topic::whereIn('id', $topics->pluck('topic_id'))->withCount(['posts', 'users'])->offset(0)->limit(3)->get();
-        return view("post/index", compact('posts','sutopics'));
+        if (\Auth::check()){
+            $user = AdminUser::find(\Auth::id());
+            $topics = $user->mytopics();
+            $sutopics = Topic::whereIn('id', $topics->pluck('topic_id'))->withCount(['posts', 'users'])->offset(0)->limit(3)->get();
+            return view("post/index", compact('posts','sutopics'));
+        }else{
+            return view("post/index", compact('posts'));
+        }
     }
 
     // 详情页面
