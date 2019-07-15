@@ -117,3 +117,42 @@ $(".like-post-button").click(function(event){
         })
     }
 });
+// 关注话题
+$(".add-topic-button").click(function(event){
+    var target = $(event.target);
+    var current_like = target.attr('add-value');
+    var topic_id = target.attr("add-topic");
+    if (current_like == 1) {
+        // 取消关注
+        $.ajax({
+            url: "/topics/" + topic_id + "/removetopic",
+            method : 'get',
+            dataType: "json",
+            success: function(data) {
+                if (data.error != 0) {
+                    alert(data.msg);
+                    return;
+                }
+                target.attr("add-value", 0);
+                target.text("＋关注")
+                target.prev(".users_count").text(data.users);
+            }
+        })
+    } else {
+        //关注
+        $.ajax({
+            url: "/topics/" + topic_id + "/addtopic",
+            method : 'get',
+            dataType: "json",
+            success: function(data) {
+                if (data.error != 0) {
+                    alert(data.msg);
+                    return;
+                }
+                target.attr("add-value", 1);
+                target.text("√取消关注")
+                target.prev('.users_count').text(data.users)
+            }
+        })
+    }
+});

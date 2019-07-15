@@ -8,11 +8,17 @@ use App\Topic;
 class TopicController extends Controller
 {
 
+    // 列表
+    public function index()
+    {
+        $topics = Topic::withCount(['posts','users'])->orderBy('posts_count', 'desc')->paginate(16);
+        return view("topic/index", compact('topics'));
+    }
     // 专题详情页
     public function show(Topic $topic)
     {
         // 带文章数的专题
-        $topic = Topic::withCount('postTopics')->find($topic->id);
+        $topic = Topic::withCount(['posts','users'])->find($topic->id);
 
         // 专题的文章列表，按照创建时间倒叙排列，前10个
         $posts = $topic->posts()->orderBy('created_at', 'desc')->withCount(['comments', 'zans','reposts'])->get();

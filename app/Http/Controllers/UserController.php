@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Topic;
 use Illuminate\Http\Request;
 use App\AdminUser;
 use App\Post;
 use App\AssumedName;
+use App\UserTopic;
 class UserController extends Controller
 {
     // 个人设置页面
@@ -79,7 +81,10 @@ class UserController extends Controller
         $fans = $user->fans;
         $fusers = AdminUser::whereIn('id', $fans->pluck('fan_id'))->withCount(['stars', 'fans', 'posts'])->get();
 
-        return view('user/show', compact('user', 'posts', 'susers', 'fusers', 'countposts'));
+        $topics = $user->mytopics();
+        $sutopics = Topic::whereIn('id', $topics->pluck('topic_id'))->withCount(['posts', 'users'])->get();
+
+        return view('user/show', compact('user', 'posts', 'susers', 'fusers', 'countposts','sutopics'));
     }
 
     // 关注用户
@@ -105,4 +110,33 @@ class UserController extends Controller
             'msg' => ''
         ];
     }
+
+    // 关注话题
+    public function addtopic(Topic $topic)
+    {
+        $param = [
+            'user_id' => \Auth::id(),
+            'topic_id' => $topic->id,
+        ];
+
+        UserTopic::firstOrCreate($param);
+        $topicusers = Topic::withCount(['users'])->find($topic->id);
+        return [
+            'error' => 0,
+            'users' => $topicusers->users_count,
+            'msg' => ''
+        ];
+    }
+    // 取消赞
+    public function removetopic(Topic $topic)
+    {
+        $topic->users(\Auth::id())->delete();
+        $topicusers = Topic::withCount(['users'])->find($topic->id);
+        return [
+            'error' => 0,
+            'users' => $topicusers->users_count,
+            'msg' => ''
+        ];
+    }
+
 }

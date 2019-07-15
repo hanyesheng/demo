@@ -62,6 +62,11 @@ class AdminUser extends Authenticatable
         return $this->hasMany(\App\Fan::class, 'fan_id', 'id');
     }
 
+//    我关注的话题模型
+    public function mytopics()
+    {
+        return $this->hasMany(\App\UserTopic::class, 'user_id','id');
+    }
     // 关注某人
     public function doFan($uid)
     {

@@ -7,6 +7,7 @@ use App\Post;
 use App\Zan;
 use App\PostTopic;
 use App\Topic;
+use App\AdminUser;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -16,7 +17,10 @@ class PostController extends Controller
     {
         $posts = Post::withCount(['comments', 'zans','reposts'])->orderBy('created_at', 'desc')->orderBy('zans_count', 'desc')->paginate(2);
         $posts->load('user');
-        return view("post/index", compact('posts'));
+        $user = AdminUser::find(\Auth::id());
+        $topics = $user->mytopics();
+        $sutopics = Topic::whereIn('id', $topics->pluck('topic_id'))->withCount(['posts', 'users'])->offset(0)->limit(3)->get();
+        return view("post/index", compact('posts','sutopics'));
     }
 
     // 详情页面

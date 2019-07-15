@@ -10,10 +10,10 @@ class Topic extends Model
     {
         return $this->belongsToMany(\App\Post::class, 'post_topics', 'topic_id', 'post_id');
     }
-
-    // 专题的文章数, 用于withCount
-    public function postTopics()
+//    专题的关注人数
+    public function users()
     {
-        return $this->hasMany(\App\PostTopic::class, 'topic_id');
+        return $this->hasMany(\App\UserTopic::class, 'topic_id');
     }
+
 }

@@ -24,6 +24,10 @@ Route::post('/login', '\App\Http\Controllers\LoginController@login');
 
 // 文章列表页
 Route::get('/posts', '\App\Http\Controllers\PostController@index');
+//所有专题
+Route::get('/alltopics', '\App\Http\Controllers\TopicController@index');
+// 专题详情页
+Route::get('/topic/{topic}', '\App\Http\Controllers\TopicController@show');
 Route::group(['middleware' => 'auth:web'], function(){
     // 登出行为
     Route::get('/logout', '\App\Http\Controllers\LoginController@logout');
@@ -58,13 +62,14 @@ Route::group(['middleware' => 'auth:web'], function(){
     // 取消赞
     Route::get('/posts/{post}/unzan', '\App\Http\Controllers\PostController@unzan');
 
+    // 关注话题
+    Route::get('/topics/{topic}/addtopic', '\App\Http\Controllers\UserController@addtopic');
+    Route::get('/topics/{topic}/removetopic', '\App\Http\Controllers\UserController@removetopic');
+
     // 个人中心
     Route::get('/user/{user}', '\App\Http\Controllers\UserController@show');
     Route::post('/user/{user}/fan', '\App\Http\Controllers\UserController@fan');
     Route::post('/user/{user}/unfan', '\App\Http\Controllers\UserController@unfan');
-
-    // 专题详情页
-    Route::get('/topic/{topic}', '\App\Http\Controllers\TopicController@show');
 
     // 通知
     Route::get('/notices', '\App\Http\Controllers\NoticeController@index');

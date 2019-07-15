@@ -23,6 +23,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">热门话题 <span class="caret"></span></a>
                     <ul class="dropdown-menu top-topics">
                         @include("layout.sidebar")
+                        <li><a href="/alltopics" class="text-center">全部话题>></a></li>
                     </ul>
                 </li>
             </ul>
