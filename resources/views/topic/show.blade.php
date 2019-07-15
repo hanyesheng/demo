@@ -5,7 +5,7 @@
         <p>#{{$topic->name}}#</p>
         <small>
             内容：{{$topic->posts_count}} | 关注：<span class="users_count">{{$topic->users_count}}</span> |
-        @if ($topic->users(\Auth::id())->exists())
+        @if ($topic->usertopic(\Auth::id())->exists())
             <a class="add-topic-button" add-value="1" add-topic="{{$topic->id}}" href="javascript:void(0);">√取消关注</a>
         @else
             <a class="add-topic-button" add-value="0" add-topic="{{$topic->id}}" href="javascript:void(0);">＋关注</a>

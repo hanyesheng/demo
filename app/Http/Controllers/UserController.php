@@ -111,32 +111,5 @@ class UserController extends Controller
         ];
     }
 
-    // 关注话题
-    public function addtopic(Topic $topic)
-    {
-        $param = [
-            'user_id' => \Auth::id(),
-            'topic_id' => $topic->id,
-        ];
-
-        UserTopic::firstOrCreate($param);
-        $topicusers = Topic::withCount(['users'])->find($topic->id);
-        return [
-            'error' => 0,
-            'users' => $topicusers->users_count,
-            'msg' => ''
-        ];
-    }
-    // 取消赞
-    public function removetopic(Topic $topic)
-    {
-        $topic->users(\Auth::id())->delete();
-        $topicusers = Topic::withCount(['users'])->find($topic->id);
-        return [
-            'error' => 0,
-            'users' => $topicusers->users_count,
-            'msg' => ''
-        ];
-    }
 
 }

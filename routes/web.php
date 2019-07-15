@@ -63,8 +63,8 @@ Route::group(['middleware' => 'auth:web'], function(){
     Route::get('/posts/{post}/unzan', '\App\Http\Controllers\PostController@unzan');
 
     // 关注话题
-    Route::get('/topics/{topic}/addtopic', '\App\Http\Controllers\UserController@addtopic');
-    Route::get('/topics/{topic}/removetopic', '\App\Http\Controllers\UserController@removetopic');
+    Route::get('/topics/{topic}/addtopic', '\App\Http\Controllers\TopicController@addtopic');
+    Route::get('/topics/{topic}/removetopic', '\App\Http\Controllers\TopicController@removetopic');
 
     // 个人中心
     Route::get('/user/{user}', '\App\Http\Controllers\UserController@show');

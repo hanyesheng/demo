@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Topic;
+use App\UserTopic;
 
 class TopicController extends Controller
 {
@@ -28,6 +29,32 @@ class TopicController extends Controller
 
         return view('topic/show', compact('topic', 'posts', 'myposts'));
     }
+    // 关注话题
+    public function addtopic(Topic $topic)
+    {
+        $param = [
+            'user_id' => \Auth::id(),
+            'topic_id' => $topic->id,
+        ];
 
+        UserTopic::firstOrCreate($param);
+        $topicusers = Topic::withCount(['users'])->find($topic->id);
+        return [
+            'error' => 0,
+            'users' => $topicusers->users_count,
+            'msg' => ''
+        ];
+    }
+    // 取消关注话题
+    public function removetopic(Topic $topic)
+    {
+        $topic->usertopic(\Auth::id())->delete();
+        $topicusers = Topic::withCount(['users'])->find($topic->id);
+        return [
+            'error' => 0,
+            'users' => $topicusers->users_count,
+            'msg' => ''
+        ];
+    }
 
 }
