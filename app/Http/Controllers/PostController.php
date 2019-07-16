@@ -17,6 +17,7 @@ class PostController extends Controller
     {
         $posts = Post::withCount(['comments', 'zans','reposts'])->orderBy('created_at', 'desc')->orderBy('zans_count', 'desc')->paginate(2);
         $posts->load('user');
+        $posts->load('topics');
         if (\Auth::check()){
             $user = AdminUser::find(\Auth::id());
             $topics = $user->mytopics();
