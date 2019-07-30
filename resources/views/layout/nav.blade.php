@@ -46,7 +46,7 @@
                 </li>
             @else
                 <li>
-                    <a href="/login">登陆</a>
+                    <a href="/login">登录</a>
                 </li>
                 <li>
                     <a href="/register">注册</a>

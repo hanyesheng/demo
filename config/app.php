@@ -178,6 +178,8 @@ return [
         Laravel\Scout\ScoutServiceProvider::class,
         ScoutEngines\Elasticsearch\ElasticsearchProvider::class,
 
+        App\Providers\EasySmsServiceProvider::class,
+
     ],
 
     /*

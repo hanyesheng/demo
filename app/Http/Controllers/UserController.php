@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\AdminUser;
 use App\Post;
 use App\AssumedName;
-use App\UserTopic;
 class UserController extends Controller
 {
     // 个人设置页面
@@ -54,9 +53,9 @@ class UserController extends Controller
             'dice_id' => 'required|min:1',
         ]);
 //        逻辑
-        $ssumedname = $names->name;
+        $assumedname = $names->name;
         $user = \Auth::user();
-        $user->assumed_name = $ssumedname;
+        $user->assumed_name = $assumedname;
         $user->dice_id = request('dice_id') - 1;
         $user->save();
 //        渲染

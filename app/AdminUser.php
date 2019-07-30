@@ -2,17 +2,26 @@
 
 namespace App;
 
-use App\Model;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
-class AdminUser extends Authenticatable
+use Tymon\JWTAuth\Contracts\JWTSubject;
+class AdminUser extends Authenticatable implements JWTSubject
 {
     protected $rememberTokenName = '';
     protected $fillable = [
-        'name', 'email', 'username', 'password','assumed_name','dice_id'
+        'name', 'email','phone', 'username', 'password','assumed_name','dice_id'
     ];
     protected $guarded = [];
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+
 
     // 用户有哪一些角色
     public function roles()
@@ -48,6 +57,14 @@ class AdminUser extends Authenticatable
     public function posts()
     {
         return $this->hasMany(\App\Post::class, 'user_id', 'id');
+    }
+
+    // 用户的头像列表
+    public function image()
+    {
+        return $this->hasOne(Image::class, 'user_id', 'id')->where(function($query) {
+            $query->where('type', '=', 'avatar');
+        })->orderBy('created_at', 'desc');
     }
 
     // 关注我的Fan模型

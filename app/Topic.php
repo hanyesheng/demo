@@ -10,6 +10,12 @@ class Topic extends Model
     {
         return $this->belongsToMany(\App\Post::class, 'post_topics', 'topic_id', 'post_id');
     }
+    // 今日贴
+    public function today_posts()
+    {
+        $today = today()->toDateString();
+        return $this->belongsToMany(\App\Post::class, 'post_topics', 'topic_id', 'post_id')->whereDate('posts.created_at','=', $today);
+    }
     // 和用户进行关联
     public function usertopic($user_id)
     {
