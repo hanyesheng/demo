@@ -6,12 +6,17 @@ use App\Model;
 
 use Illuminate\Database\Eloquent\Builder;
 use Laravel\Scout\Searchable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 // 表 => posts
 
 class Post extends Model
 {
     use Searchable;
+    use SoftDeletes;
+    protected $table = 'posts'; //表名
+    protected $primaryKey = 'id'; //主键
+    protected $datas = ['deleted_at'];
 //    protected $table = "...";(按照规则自动对应posts  否则手动对应)
     // 定义索引里面的type
     public function searchableAs()
@@ -45,26 +50,41 @@ class Post extends Model
     {
         return $this->hasOne(\App\Zan::class)->where('user_id', $user_id);
     }
-
     // 文章的所有赞
     public function zans()
     {
         return $this->hasMany(\App\Zan::class);
     }
-
-//    文章所有转发（转发此post的数量）
+    // 是否点赞此post
+    public function haszan($user_id)
+    {
+        return $this->zans()->where('user_id', $user_id)->count();
+    }
+    //文章所有转发（转发此post的数量）
     public function reposts()
     {
         return $this->hasMany(\App\Post::class,'forward_post_id','id');
+    }
+    //文章的所有图片
+    public function images()
+    {
+        return $this->hasMany(Image::class, 'post_id', 'id')->where(function($query) {
+            $query->where('type', '=', 'post');
+        })->orderBy('created_at', 'desc');
     }
     //文章的所有话题
     public function topics()
     {
         return $this->belongsToMany(\App\Topic::class, 'post_topics', 'post_id','topic_id');
     }
+
     public function lastposts()
     {
-        return $this->hasMany(\App\Post::class, 'id','forward_post_id')->withCount(['comments', 'zans','reposts']);
+        return $this->hasMany(\App\Post::class, 'id','forward_post_id')->withCount(['zans','reposts']);
+    }
+    public function orPosts()
+    {
+        return $this->belongsTo(\App\Post::class, 'forward_post_id','id');
     }
 
 
@@ -91,7 +111,6 @@ class Post extends Model
     protected static function boot()
     {
         parent::boot();
-
         static::addGlobalScope("avaiable", function(Builder $builder){
             $builder->whereIn('status', [0, 1]);
         });

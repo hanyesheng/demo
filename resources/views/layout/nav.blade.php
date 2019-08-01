@@ -36,10 +36,16 @@
             <ul class="nav navbar-nav navbar-right">
             @if (\Auth::check())
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="{{\Auth::user()->avatar}}" alt="" class="img-rounded" style="border-radius:500px; height: 30px">{{ \Auth::user()->name }}  <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        @if (\Auth::user()->image->path ?? NULL)
+                            <img src="{{\Auth::user()->image->path}}" alt="" class="img-rounded" style="border-radius:500px; height: 30px">{{ \Auth::user()->name }}  <span class="badge">{{ Auth::user()->notification_count }}</span>
+                        @else
+                            <img src="/defaultAvatar.jpg" alt="" class="img-rounded" style="border-radius:500px; height: 30px">{{ \Auth::user()->name }}  <span class="badge">{{ Auth::user()->notification_count }}</span>
+                        @endif
+                    </a>
                     <ul class="dropdown-menu">
                         <li><a href="/user/{{\Auth::id()}}">我的主页</a></li>
-                        <li><a href="/notices">通知</a></li>
+                        <li><a href="/notices">通知<span class="badge">{{ Auth::user()->notification_count }}</span></a></li>
                         <li><a href="/user/me/setting">个人设置</a></li>
                         <li><a href="/logout">登出</a></li>
                     </ul>

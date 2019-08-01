@@ -17,10 +17,10 @@ class CreatePostsTable extends Migration
             $table->increments('id');
             $table->string('title', 100)->default("");
             $table->text('content')->nullable();
-            $table->integer('forward_post_id')->default(0);
-            $table->integer('original_post_id')->default(0);
+            $table->integer('forward_post_id')->nullable();
+            $table->integer('original_post_id')->nullable();
             $table->string('assumed_name')->nullable();
-            $table->integer('user_id')->default(0);
+            $table->integer('user_id')->nullable();
             $table->string('level_id')->nullable();
             $table->string('vote_id')->nullable();
             $table->string('avatar')->nullable();

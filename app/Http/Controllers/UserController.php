@@ -6,6 +6,7 @@ use App\Topic;
 use Illuminate\Http\Request;
 use App\AdminUser;
 use App\Post;
+use App\Fan;
 use App\AssumedName;
 class UserController extends Controller
 {
@@ -89,9 +90,12 @@ class UserController extends Controller
     // 关注用户
     public function fan(AdminUser $user)
     {
-        $me = \Auth::user();
-        $me->doFan($user->id);
+        $param = [
+            'fan_id' => \Auth::user()->id,
+            'star_id' => $user->id,
+        ];
 
+        Fan::firstOrCreate($param);
         return [
             'error' => 0,
             'msg' => ''
@@ -101,8 +105,7 @@ class UserController extends Controller
     // 取消关注
     public function unfan(AdminUser $user)
     {
-        $me = \Auth::user();
-        $me->doUnfan($user->id);
+        $user->myfans(\Auth::user()->id)->delete();
 
         return [
             'error' => 0,

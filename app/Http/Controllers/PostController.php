@@ -15,8 +15,8 @@ class PostController extends Controller
     // 列表
     public function index()
     {
-        $posts = Post::withCount(['comments', 'zans','reposts'])->orderBy('created_at', 'desc')->orderBy('zans_count', 'desc')->paginate(2);
-        $posts->load('user');
+        $posts = Post::with(['topics','user','images'])->withCount(['comments', 'zans','reposts'])->orderBy('created_at', 'desc')->orderBy('zans_count', 'desc')->paginate(2);
+
         if (\Auth::check()){
             $user = AdminUser::find(\Auth::id());
             $topics = $user->mytopics();

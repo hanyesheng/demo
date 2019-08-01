@@ -1,7 +1,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        @if ($post->user->avatar)
-            <img class="user-avatar" src="{{$post->user->avatar}}">
+        @if ($post->user->image->path ?? NULL)
+            <img class="user-avatar" src="{{$post->user->image->path}}">
         @else
             <img class="user-avatar" src="/defaultAvatar.jpg">
         @endif
@@ -16,8 +16,10 @@
         <div class="media">
             <div class="media-body">
                 <div class="post-content"><p class="lead">{{$post->level_id}}.{{$post->title}}</p></div>
-                @if($post->avatar)
-                    <img src="{{$post->avatar}}" alt="..." class="img-rounded post-img">
+                @if($post->images)
+                    @foreach($post->images as $images)
+                    <img src="{{$images->path}}" alt="..." class="img-rounded post-img">
+                    @endforeach
                 @endif
             </div>
             <div class="media-left">

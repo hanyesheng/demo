@@ -1,10 +1,23 @@
 <?php
 
 namespace App;
+use Laravel\Scout\Searchable;
 
 class Topic extends Model
 {
+    use Searchable;
+    public function searchableAs()
+    {
+        return "topics";
+    }
 
+    // 定义有那些字段需要搜索
+    public function toSearchableArray()
+    {
+        return [
+            'name' => $this->name,
+        ];
+    }
     // 属于这个专题的所有文章
     public function posts()
     {
@@ -26,5 +39,9 @@ class Topic extends Model
     {
         return $this->hasMany(\App\UserTopic::class, 'topic_id');
     }
-
+    // 是否关注此话题
+    public function hastopic($user_id)
+    {
+        return $this->users()->where('user_id', $user_id)->count();
+    }
 }

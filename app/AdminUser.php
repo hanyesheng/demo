@@ -2,9 +2,11 @@
 
 namespace App;
 
-
+use Laravel\Scout\Searchable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Notifications\Notifiable;
+use Auth;
 class AdminUser extends Authenticatable implements JWTSubject
 {
     protected $rememberTokenName = '';
@@ -12,6 +14,7 @@ class AdminUser extends Authenticatable implements JWTSubject
         'name', 'email','phone', 'username', 'password','assumed_name','dice_id'
     ];
     protected $guarded = [];
+    // 认证
     public function getJWTIdentifier()
     {
         return $this->getKey();
@@ -21,7 +24,50 @@ class AdminUser extends Authenticatable implements JWTSubject
     {
         return [];
     }
+    // 搜索
+    use Searchable;
+    public function searchableAs()
+    {
+        return "admin_users";
+    }
+    // 定义有那些字段需要搜索
+    public function toSearchableArray()
+    {
+        return [
+            'name' => $this->name,
+            'phone' => $this->phone,
+        ];
+    }
 
+    use Notifiable {
+        notify as protected laravelNotify;
+    }
+    public function notify($instance)
+    {
+        // 如果要通知的人是当前用户，就不必通知了！
+        if ($this->id == Auth::id()) {
+            return;
+        }
+
+        // 只有数据库类型通知才需提醒，直接发送 Email 或者其他的都 Pass
+        if (method_exists($instance, 'toDatabase')) {
+            $this->increment('notification_count');
+        }
+
+        $this->laravelNotify($instance);
+    }
+    // 清除未读消息
+    public function markAsRead()
+    {
+        $this->notification_count = 0;
+        $this->save();
+        $this->unreadNotifications->markAsRead();
+    }
+    // 是否拥有某一模型
+    public function isAuthorOf($model)
+    {
+        return $this->id == $model->user_id;
+    }
 
     // 用户有哪一些角色
     public function roles()
@@ -56,7 +102,7 @@ class AdminUser extends Authenticatable implements JWTSubject
     // 用户的文章列表
     public function posts()
     {
-        return $this->hasMany(\App\Post::class, 'user_id', 'id');
+        return $this->hasMany(Post::class, 'user_id', 'id');
     }
 
     // 用户的头像列表
@@ -79,26 +125,18 @@ class AdminUser extends Authenticatable implements JWTSubject
         return $this->hasMany(\App\Fan::class, 'fan_id', 'id');
     }
 
-//    我关注的话题模型
+    // 我关注的话题模型
     public function mytopics()
     {
         return $this->hasMany(\App\UserTopic::class, 'user_id','id');
     }
-    // 关注某人
-    public function doFan($uid)
+
+    // 我关注的 和用户进行关联
+    public function myfans($user_id)
     {
-        $fan = new \App\Fan();
-        $fan->star_id = $uid;
-        return $this->stars()->save($fan);
+        return $this->hasOne(\App\Fan::class,'star_id', 'id')->where('fan_id', $user_id);
     }
 
-    // 取消关注
-    public function doUnfan($uid)
-    {
-        $fan = new \App\Fan();
-        $fan->star_id = $uid;
-        return $this->stars()->delete($fan);
-    }
 
     // 当前用户是否被uid关注了
     public function hasFan($uid)
