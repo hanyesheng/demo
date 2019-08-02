@@ -114,6 +114,29 @@ class PostController extends Controller
             ->orderBy('created_at', 'desc')->paginate(10);
         return $this->response->paginator($posts, new PostTransformer());
     }
+
+    // 获取某个post的信息
+    public function show(Post $post)
+    {
+        $postInfo = Post::with('user','topics','images')->withCount(['reposts','zans'])->find($post->id);
+        return $this->response->item($postInfo, new PostTransformer());
+    }
+    // 获取某个post的转发
+    public function reposts(Post $post)
+    {
+        $posts = $post->reposts()->with('user','topics','images')->withCount(['reposts','zans'])->orderBy('created_at', 'desc')->paginate(10);
+        return $this->response->paginator($posts, new PostTransformer());
+    }
+    // 获取某个post的链条
+    public function orPosts(Post $post)
+    {
+        $post_id = $post->orPosts()->pluck('id')->toArray();
+        $posts =  Post::whereIn('id', $post_id)
+            ->with(['topics','user','images'])
+            ->orderBy('created_at', 'desc')->paginate(10);
+        return $this->response->paginator($posts, new PostTransformer());
+    }
+
     // 赞
     public function zan(Post $post)
     {

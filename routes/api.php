@@ -128,6 +128,17 @@ $api->version('v1', [
             $api->get('posts/{post}/delete', 'PostController@delete')
                 ->name('api.posts.delete');
 
+            // post页面
+            // 某个post信息
+            $api->get('posts/{post}/show', 'PostController@show')
+                ->name('api.posts.show');
+            // 某个post的转发
+            $api->get('posts/{post}/reposts', 'PostController@reposts')
+                ->name('api.posts.reposts');
+            // 某个post的链条
+            $api->get('posts/{post}/orPosts', 'PostController@orPosts')
+                ->name('api.posts.orPosts');
+
             // 个人页面
             // 某个用户的信息
             $api->get('users/{user}/index', 'UsersController@userIndex')
