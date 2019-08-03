@@ -8,6 +8,8 @@ use App\Zan;
 use App\PostTopic;
 use App\Topic;
 use App\AdminUser;
+use App\Image;
+use App\Handlers\ImageUploadHandler;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -41,7 +43,7 @@ class PostController extends Controller
     }
 
     // 创建逻辑
-    public function store(Request $request)
+    public function store(Request $request ,ImageUploadHandler $uploader,Image $image)
     {
         // 验证
         $this->validate(request(),[
@@ -50,10 +52,6 @@ class PostController extends Controller
         // 逻辑
         $user = \Auth::user();
         $post = new Post;
-        if ($request->file('avatar')) {
-            $path = $request->file('avatar')->storePublicly($user->id);
-            $post->avatar = "/storage/" . $path;
-        }
         $post->title = request('title');
         $post->user_id = $user->id;
         $post->assumed_name = $user->assumed_name;
@@ -63,6 +61,20 @@ class PostController extends Controller
         $newpost = Post::where('id', $post->id)->first();
         $newpost->original_post_id = $newpost->id;
         $newpost->save();
+
+        //        生成图片
+        if ($request->file('avatar')) {
+            $image = new Image;
+            $image->type = 'post';
+            $size = 1024;
+            $result = $uploader->save($request->avatar, str_plural($image->type), $user->id, $size);
+            $image->path = $result['path'];
+            $image->type = 'post';
+            $image->user_id = $user->id;
+            $image->post_id = $post->id;
+            $image->save();
+        }
+
 //       生成话题
         if(request('topic_name')){
             if (Topic::where('name', request('topic_name'))->count() > 0) {
@@ -86,7 +98,7 @@ class PostController extends Controller
         return redirect("/posts");
     }
     // 转发逻辑
-    public function repost(Request $request)
+    public function repost(Request $request ,ImageUploadHandler $uploader,Image $image)
     {
         // 验证
         $this->validate(request(),[
@@ -98,10 +110,6 @@ class PostController extends Controller
         // 逻辑
         $user = \Auth::user();
         $post = new Post;
-        if ($request->file('avatar')) {
-            $path = $request->file('avatar')->storePublicly($user->id);
-            $post->avatar = "/storage/" . $path;
-        }
         $post->title = request('title');
         $post->user_id = $user->id;
         $post->assumed_name = $user->assumed_name;
@@ -110,6 +118,18 @@ class PostController extends Controller
         $post->original_post_id = request('original_post_id');
         $post->save();
 
+        //        生成图片
+        if ($request->file('avatar')) {
+            $image = new Image;
+            $image->type = 'post';
+            $size = 1024;
+            $result = $uploader->save($request->avatar, str_plural($image->type), $user->id, $size);
+            $image->path = $result['path'];
+            $image->type = 'post';
+            $image->user_id = $user->id;
+            $image->post_id = $post->id;
+            $image->save();
+        }
 //        生成话题
         if(request('topic_name')){
             if (Topic::where('name', request('topic_name'))->count() > 0) {

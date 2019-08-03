@@ -9,13 +9,14 @@ use App\Topic;
 use App\PostTopic;
 use App\Image;
 use Illuminate\Http\Request;
+use App\Handlers\ImageUploadHandler;
 use App\Http\Requests\Api\PostRequest;
 use App\Transformers\PostTransformer;
 
 class PostController extends Controller
 {
     //
-    public function store(PostRequest $request)
+    public function store(PostRequest $request ,ImageUploadHandler $uploader,Image $image)
     {
         $post = new Post;
         $post->user_id = $this->user()->id;
@@ -32,13 +33,15 @@ class PostController extends Controller
         }
         $post->save();
 //        生成图片
-        if ($request->file('image')) {
+        if ($request->file('avatar')) {
             $image = new Image;
             $image->type = 'post';
-            $image->user_id = $this->user()->id;
+            $size = 1024;
+            $result = $uploader->save($request->avatar, str_plural($image->type), $user->id, $size);
+            $image->path = $result['path'];
+            $image->type = 'post';
+            $image->user_id = $user->id;
             $image->post_id = $post->id;
-            $path = $request->file('image')->storePublicly($this->user()->id);
-            $image->path = "/storage/" . $path;
             $image->save();
         }
         //        生成话题

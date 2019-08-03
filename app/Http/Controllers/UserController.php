@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use App\AdminUser;
 use App\Post;
 use App\Fan;
+use App\Image;
 use App\AssumedName;
+use App\Handlers\ImageUploadHandler;
 class UserController extends Controller
 {
     // 个人设置页面
@@ -35,14 +37,24 @@ class UserController extends Controller
             $user->name = $name;
         }
 
-        if ($request->file('avatar')) {
-            $path = $request->file('avatar')->storePublicly($user->id);
-            $user->avatar = "/storage/" . $path;
-        }
-
         $user->save();
 
         // 渲染
+        return back();
+    }
+
+    public function userImageStore(Request $request, ImageUploadHandler $uploader,Image $image)
+    {
+        $user = \Auth::user();
+
+        $size = $request->type == 'avatar' ? 200 : 1024;
+        $result = $uploader->save($request->avatar, str_plural($request->type), $user->id, $size);
+
+        $image->path = $result['path'];
+        $image->type = $request->type;
+        $image->user_id = $user->id;
+        $image->save();
+
         return back();
     }
 

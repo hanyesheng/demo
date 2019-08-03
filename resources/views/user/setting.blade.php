@@ -2,6 +2,18 @@
 
 @section("content")
 <div class="col-sm-8 blog-main">
+    <form class="form-horizontal" action="/user/me/settingImage" method="POST" enctype="multipart/form-data">
+        {{csrf_field()}}
+        <input type="hidden" value="avatar" name="type">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">头像</label>
+            <div class="col-sm-2">
+                <input class=" file-loading preview_input" type="file" value="头像" style="width:72px" name="avatar">
+                <img  class="preview_img" src="{{$user->image->path ?? NULL}}" alt="" class="img-rounded" style="border-radius:500px;">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-default">修改头像</button>
+    </form>
     <form class="form-horizontal" action="/user/me/createAssumedName" method="POST" enctype="multipart/form-data">
         {{csrf_field()}}
         <div class="form-group">
@@ -18,22 +30,14 @@
             </div>
         </div>
     </form>
-    <form class="form-horizontal" action="/user/me/setting" method="POST" enctype="multipart/form-data">
+    <form class="form-horizontal1" action="/user/me/setting" method="POST" enctype="multipart/form-data">
         {{csrf_field()}}
         <div class="form-group">
-            <label class="col-sm-2 control-label">用户名</label>
+            <label class="col-sm-2 control-label">名字</label>
             <div class="col-sm-10">
                 <input class="form-control" name="name" type="text" value="{{$user->name}}">
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">头像</label>
-            <div class="col-sm-2">
-                <input class=" file-loading preview_input" type="file" value="头像" style="width:72px" name="avatar">
-                <img  class="preview_img" src="{{$user->avatar}}" alt="" class="img-rounded" style="border-radius:500px;">
-            </div>
-        </div>
-        @include('layout.error')
         <button type="submit" class="btn btn-default">修改</button>
     </form>
     <br>

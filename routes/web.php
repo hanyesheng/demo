@@ -36,6 +36,7 @@ Route::group(['middleware' => 'auth:web'], function(){
     Route::get('/user/me/setting', '\App\Http\Controllers\UserController@setting');
     // 个人设置操作
     Route::post('/user/me/setting', '\App\Http\Controllers\UserController@settingStore');
+    Route::post('/user/me/settingImage', '\App\Http\Controllers\UserController@userImageStore');
 
     Route::post('/user/me/createAssumedName', '\App\Http\Controllers\UserController@createAssumedName');
 
