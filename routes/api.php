@@ -47,7 +47,10 @@ $api->version('v1', [
         'expires' => config('api.rate_limits.sign.expires'),
     ], function($api) {
         // 游客可以访问的接口
-
+        // post列表
+        $api->get('posts', 'PostController@index')
+            ->name('api.posts.index');
+        
         // 需要 token 验证的接口
         $api->group(['middleware' => 'api.auth'], function($api) {
             // 我的信息
@@ -106,9 +109,6 @@ $api->version('v1', [
             // 发布post
             $api->post('posts', 'PostController@store')
                 ->name('api.posts.store');
-            // post列表
-            $api->get('posts', 'PostController@index')
-                ->name('api.posts.index');
             // 关注人post列表
             $api->get('starPosts', 'PostController@starPosts')
                 ->name('api.posts.starPosts');
