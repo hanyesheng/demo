@@ -50,7 +50,7 @@ $api->version('v1', [
         // post列表
         $api->get('posts', 'PostController@index')
             ->name('api.posts.index');
-        
+
         // 需要 token 验证的接口
         $api->group(['middleware' => 'api.auth'], function($api) {
             // 我的信息
