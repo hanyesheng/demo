@@ -16,7 +16,7 @@ class PostTransformer extends TransformerAbstract
             'topic' => $post->topics,
             'image' => $post->images,
             'user_id' => $post->user_id,
-            'hasZan' => $post->haszan(\Auth::guard('api')->user()->id) ? true : false,
+//            'hasZan' => $post->haszan(\Auth::guard('api')->user()->id) ? true : false,
             'user_image' => $post->user->image->path ?? NULL,
             'assumed_name' => $post->assumed_name,
             'user_name' => $post->user->name ?? NULL,
